@@ -1,0 +1,27 @@
+================
+Namespace block
+================
+
+namespace Testers {
+    int test () {
+        return 0;
+    }
+}
+
+---
+
+(source_file
+    (namespace
+        (camel_cased_identifier)
+        (block
+            (function_definition
+                (primitive_type)
+                (identifier)
+                (parameter_list)
+                (block
+                    (return_statement (number))
+                )
+            )
+        )
+    )
+)

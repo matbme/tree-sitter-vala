@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -21,6 +25,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -39,6 +47,10 @@
           "named": true
         },
         {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -48,6 +60,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -66,11 +82,28 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
           "type": "return_statement",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "function_definition",
@@ -82,6 +115,10 @@
       "types": [
         {
           "type": "block",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
           "named": true
         },
         {
@@ -99,6 +136,10 @@
         {
           "type": "primitive_type",
           "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
         }
       ]
     }
@@ -109,6 +150,33 @@
     "fields": {}
   },
   {
+    "type": "namespace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter",
     "named": true,
     "fields": {},
@@ -116,6 +184,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -126,6 +198,10 @@
         },
         {
           "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -164,6 +240,10 @@
           "named": true
         },
         {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -173,6 +253,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -187,7 +271,15 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         }
       ]
@@ -206,6 +298,10 @@
           "named": true
         },
         {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -215,6 +311,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -271,6 +371,10 @@
   {
     "type": "bool",
     "named": false
+  },
+  {
+    "type": "camel_cased_identifier",
+    "named": true
   },
   {
     "type": "char",
@@ -334,6 +438,10 @@
   },
   {
     "type": "long",
+    "named": false
+  },
+  {
+    "type": "namespace",
     "named": false
   },
   {
@@ -435,6 +543,10 @@
   {
     "type": "unowned",
     "named": false
+  },
+  {
+    "type": "uppercased_identifier",
+    "named": true
   },
   {
     "type": "ushort",

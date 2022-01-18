@@ -5,13 +5,15 @@ module.exports = grammar({
         source_file: $ => repeat($._definition),
 
         _definition: $ => choice(
-            $.function_definition
+            $.function_definition,
+            $.comment,
+            $.namespace
         ),
 
         function_definition: $ => seq(
             repeat($.modifier),
             $._type,
-            $.identifier,
+            $._identifiers,
             $.parameter_list,
             $.block
         ),
@@ -73,17 +75,27 @@ module.exports = grammar({
             'ushort'
         ),
 
+        comment: $ => choice(
+            /\/\/.+/, // Single line
+            /\/\*(.|\n)+\*\// // Multi-line
+        ),
+
         parameter_list: $ => seq(
             '(',
             optional(seq($.parameter, repeat(seq(',', $.parameter)))),
             ')'
         ),
 
-        parameter: $ => seq(repeat($.modifier), $._type, $.identifier),
+        parameter: $ => seq(repeat($.modifier), $._type, $._identifiers),
 
         block: $ => seq(
             '{',
-            repeat($._statement),
+            repeat(
+                choice(
+                    $._statement,
+                    $._definition
+                )
+            ),
             '}'
         ),
 
@@ -99,14 +111,20 @@ module.exports = grammar({
         ),
 
         assignment: $ => seq(
-            $.identifier,
+            $._identifiers,
             '=',
             $._expression,
             ';'
         ),
 
+        namespace: $ => seq(
+            'namespace',
+            $._identifiers,
+            $.block
+        ),
+
         _expression: $ => choice(
-            $.identifier,
+            $._identifiers,
             $.number,
             $.unary_expression,
             $.binary_expression
@@ -124,7 +142,17 @@ module.exports = grammar({
             prec.left(1, seq($._expression, '-', $._expression))
         ),
 
+        _identifiers: $ => choice(
+            $.identifier,
+            $.camel_cased_identifier,
+            $.uppercased_identifier
+        ),
+
         identifier: $ => /[a-z_]+/,
+
+        camel_cased_identifier: $ => /(?:[A-Z][a-z]*)+/,
+
+        uppercased_identifier: $ => /[A-Z_]+/,
 
         number: $ => /\d+/
     }

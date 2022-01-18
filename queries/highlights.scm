@@ -2,11 +2,14 @@
 
 (identifier) @variable
 
+; Constant
+(uppercased_identifier) @constant
+
 ; Methods
 
 (function_definition
-	(modifier) @keyword
-	(identifier) @method
+  (modifier) @keyword
+  (identifier) @method
 )
 
 ; Types
@@ -28,3 +31,23 @@
   "*"
   "/"
 ] @operator
+
+; Comments
+
+(comment) @comment
+
+; Namespace
+
+(namespace
+  "namespace" @keyword
+  (camel_cased_identifier) @definition.namespace
+)
+
+; Brackets
+
+[
+  "{"
+  "}"
+  "("
+  ")"
+] @punctuation.bracket
