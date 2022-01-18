@@ -1,0 +1,33 @@
+====================
+Single line comment
+====================
+
+// This is a comment
+
+---
+
+(source_file (comment))
+
+
+===================
+Multi-line comment
+===================
+
+/* This comment
+ * goes
+ * over
+ * several lines
+ */
+
+---
+
+(source_file (comment))
+
+
+====================
+Translators comment
+====================
+
+/// TRANSLATORS: Where yould we be without you?
+
+(source_file (comment))

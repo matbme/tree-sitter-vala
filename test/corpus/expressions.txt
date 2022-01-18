@@ -1,0 +1,58 @@
+==================
+Unary expressions
+==================
+
+void manipulate (int a, bool b) {
+    a = -a;
+    b = !b;
+    // ...
+}
+
+---
+
+(source_file 
+    (function_definition
+        (primitive_type)
+        (identifier)
+        (parameter_list 
+            (parameter (primitive_type) (identifier))
+            (parameter (primitive_type) (identifier))
+        )
+        (block
+            (assignment (identifier) (unary_expression (identifier)))
+            (assignment (identifier) (unary_expression (identifier)))
+            (comment)
+        )
+    )
+)
+
+
+===================
+Binary expressions
+===================
+
+void calculate (int a, int b) {
+    a = a + b;
+    a = a - b;
+    a = a * b;
+    a = a / b;
+}
+
+---
+
+(source_file 
+    (function_definition
+        (primitive_type)
+        (identifier)
+        (parameter_list 
+            (parameter (primitive_type) (identifier))
+            (parameter (primitive_type) (identifier))
+        )
+        (block
+            (assignment (identifier) (binary_expression (identifier) (identifier)))
+            (assignment (identifier) (binary_expression (identifier) (identifier)))
+            (assignment (identifier) (binary_expression (identifier) (identifier)))
+            (assignment (identifier) (binary_expression (identifier) (identifier)))
+        )
+    )
+)
