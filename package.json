@@ -1,0 +1,18 @@
+{
+  "name": "tree-sitter-vala",
+  "version": "1.0.0",
+  "description": "Tree-sitter implementation for the Vala programming language",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mateus Melchiades",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.15.0",
+    "tree-sitter-highlight": "^1.0.1"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.1"
+  }
+}

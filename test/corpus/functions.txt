@@ -1,0 +1,50 @@
+================
+Simple function
+================
+
+int five () {
+    return 5;
+}
+
+---
+
+(source_file
+    (function_definition
+        (primitive_type)
+        (identifier)
+        (parameter_list)
+        (block
+            (return_statement (number))
+        )
+    )
+)
+
+
+=======================================
+Function with modifiers and parameters
+=======================================
+
+public virtual int mult (int x, int y, out int z) {
+    z = x * y;
+    return z;
+}
+
+---
+
+(source_file
+    (function_definition
+        (modifier)
+        (modifier)
+        (primitive_type)
+        (identifier)
+        (parameter_list
+            (parameter (primitive_type) (identifier))
+            (parameter (primitive_type) (identifier))
+            (parameter (modifier) (primitive_type) (identifier))
+        )
+        (block
+            (assignment (identifier) (binary_expression (identifier) (identifier)))
+            (return_statement (identifier))
+        )
+    )
+)
