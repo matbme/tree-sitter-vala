@@ -20,6 +20,10 @@
           "named": true
         },
         {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -55,6 +59,10 @@
           "named": true
         },
         {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -82,6 +90,10 @@
           "named": true
         },
         {
+          "type": "class_declaration",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
@@ -99,6 +111,41 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -131,6 +178,10 @@
         },
         {
           "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
           "named": true
         },
         {
@@ -177,6 +228,10 @@
           "named": true
         },
         {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
           "type": "parameter_list",
           "named": true
         },
@@ -217,6 +272,33 @@
           "named": true
         },
         {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespaced_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "uppercased_identifier",
           "named": true
         }
@@ -241,6 +323,10 @@
         },
         {
           "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
           "named": true
         },
         {
@@ -295,6 +381,10 @@
           "named": true
         },
         {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -319,6 +409,10 @@
       "types": [
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "class_declaration",
           "named": true
         },
         {
@@ -365,6 +459,10 @@
           "named": true
         },
         {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -408,7 +506,15 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
     "named": false
   },
   {
@@ -437,6 +543,10 @@
   },
   {
     "type": "char",
+    "named": false
+  },
+  {
+    "type": "class",
     "named": false
   },
   {

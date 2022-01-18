@@ -1,6 +1,7 @@
 ; Variable
 
 (identifier) @variable
+
 "var" @definition.var
 
 ; Constant
@@ -13,6 +14,9 @@
   (identifier) @method
 )
 
+; Modifiers
+(modifier) @keyword
+
 ; Types
 
 (primitive_type) @type
@@ -20,9 +24,15 @@
 ; Keywords
 "return" @keyword.return
 
-; Constants
+; Other
 
 (number) @number
+
+(namespaced_identifier
+    (identifier) @variable
+    (camel_cased_identifier) @type
+    (uppercased_identifier) @constant
+)
 
 ; Operators
 
@@ -52,3 +62,11 @@
   "("
   ")"
 ] @punctuation.bracket
+
+; Classes
+
+(class_declaration
+    (modifier) @keyword
+    "class" @keyword
+    (camel_cased_identifier) @type
+)

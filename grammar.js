@@ -9,7 +9,8 @@ module.exports = grammar({
             $.comment,
             $.namespace,
             $.declaration,
-            $._statement
+            $._statement,
+            $.class_declaration
         ),
 
         function_definition: $ => seq(
@@ -17,6 +18,14 @@ module.exports = grammar({
             $._type,
             $._identifiers,
             $.parameter_list,
+            $.block
+        ),
+
+        class_declaration: $ => seq(
+            repeat($.modifier),
+            'class',
+            $.camel_cased_identifier,
+            optional(seq(':', $._identifiers)),
             $.block
         ),
 
@@ -154,7 +163,8 @@ module.exports = grammar({
         _identifiers: $ => choice(
             $.identifier,
             $.camel_cased_identifier,
-            $.uppercased_identifier
+            $.uppercased_identifier,
+            $.namespaced_identifier
         ),
 
         identifier: $ => /[a-z_]+/,
@@ -162,6 +172,17 @@ module.exports = grammar({
         camel_cased_identifier: $ => /(?:[A-Z][a-z]*)+/,
 
         uppercased_identifier: $ => /[A-Z_]+/,
+
+        namespaced_identifier: $ => seq(
+            choice($.identifier, $.camel_cased_identifier),
+            repeat1(
+                seq('.', choice(
+                    $.identifier, 
+                    $.camel_cased_identifier, 
+                    $.uppercased_identifier)
+                )
+            )
+        ),
 
         number: $ => /\d+/
     }

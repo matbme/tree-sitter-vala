@@ -1,0 +1,37 @@
+==================
+Class declaration
+==================
+
+public class MyClass {
+    // ...
+}
+
+---
+
+(source_file
+    (class_declaration
+        (modifier)
+        (camel_cased_identifier)
+        (block (comment))
+    )
+)
+
+
+===================================
+Class declaration with inheritance
+===================================
+
+public class MyClass : GLib.Object {
+    // ...
+}
+
+---
+
+(source_file
+    (class_declaration
+        (modifier)
+        (camel_cased_identifier)
+        (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier))
+        (block (comment))
+    )
+)
