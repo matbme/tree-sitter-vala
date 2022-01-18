@@ -2,12 +2,14 @@ module.exports = grammar({
     name: 'vala',
 
     rules: {
-        source_file: $ => repeat($._definition),
+        source_file: $ => repeat($._top_level),
 
-        _definition: $ => choice(
+        _top_level: $ => choice(
             $.function_definition,
             $.comment,
-            $.namespace
+            $.namespace,
+            $.declaration,
+            $._statement
         ),
 
         function_definition: $ => seq(
@@ -92,8 +94,7 @@ module.exports = grammar({
             '{',
             repeat(
                 choice(
-                    $._statement,
-                    $._definition
+                    $._top_level
                 )
             ),
             '}'
@@ -101,7 +102,7 @@ module.exports = grammar({
 
         _statement: $ => choice(
             $.return_statement,
-            $.assignment
+            $.assignment,
         ),
 
         return_statement: $ => seq(
@@ -114,6 +115,14 @@ module.exports = grammar({
             $._identifiers,
             '=',
             $._expression,
+            ';'
+        ),
+
+        declaration: $ => seq(
+            repeat($.modifier),
+            choice($._type, 'var'),
+            $._identifiers,
+            optional(seq('=', $._expression)),
             ';'
         ),
 

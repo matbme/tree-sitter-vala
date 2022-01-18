@@ -1,6 +1,7 @@
 ; Variable
 
 (identifier) @variable
+"var" @definition.var
 
 ; Constant
 (uppercased_identifier) @constant

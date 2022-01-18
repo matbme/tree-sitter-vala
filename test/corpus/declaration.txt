@@ -1,0 +1,44 @@
+=======================
+Declaration using type
+=======================
+
+void declare () {
+    int a;
+    long b = 1;
+}
+
+---
+
+(source_file 
+    (function_definition
+        (primitive_type)
+        (identifier)
+        (parameter_list)
+        (block
+            (declaration (primitive_type) (identifier))
+            (declaration (primitive_type) (identifier) (number))
+        )
+    )
+)
+
+
+======================
+Declaration using var
+======================
+
+void declare () {
+    var c = 5;
+}
+
+---
+
+(source_file 
+    (function_definition
+        (primitive_type)
+        (identifier)
+        (parameter_list)
+        (block
+            (declaration (identifier) (number))
+        )
+    )
+)
