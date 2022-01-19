@@ -15,8 +15,8 @@ void manipulate (int a, bool b) {
         (primitive_type)
         (identifier)
         (parameter_list 
-            (parameter (primitive_type) (identifier))
-            (parameter (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier))
         )
         (block
             (assignment (identifier) (unary_expression (identifier)))
@@ -45,8 +45,8 @@ void calculate (int a, int b) {
         (primitive_type)
         (identifier)
         (parameter_list 
-            (parameter (primitive_type) (identifier))
-            (parameter (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier))
         )
         (block
             (assignment (identifier) (binary_expression (identifier) (identifier)))

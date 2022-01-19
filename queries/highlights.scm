@@ -50,7 +50,7 @@
 ; Namespace
 
 (namespace
-  "namespace" @keyword
+  "namespace" @namespace
   (camel_cased_identifier) @definition.namespace
 )
 
@@ -69,4 +69,19 @@
     (modifier) @keyword
     "class" @keyword
     (camel_cased_identifier) @type
+)
+
+; Class properties
+
+(property_parameter) @keyword
+
+; Strings and escape sequences
+
+(string_literal) @string
+(escape_sequence) @string.escape
+
+; Assignment and declaration
+
+(new_instance
+    "new" @keyword
 )

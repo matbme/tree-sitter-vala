@@ -24,7 +24,15 @@
           "named": true
         },
         {
+          "type": "new_instance",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -63,7 +71,15 @@
           "named": true
         },
         {
+          "type": "new_instance",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -173,6 +189,10 @@
           "named": true
         },
         {
+          "type": "gobject_property_acces",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -185,6 +205,10 @@
           "named": true
         },
         {
+          "type": "new_instance",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -193,7 +217,46 @@
           "named": true
         },
         {
+          "type": "string_literal",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "declaration_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
           "named": true
         },
         {
@@ -237,6 +300,64 @@
         },
         {
           "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "gobject_property_acces",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "property_parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "instanciation_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -306,7 +427,7 @@
     }
   },
   {
-    "type": "parameter",
+    "type": "new_instance",
     "named": true,
     "fields": {},
     "children": {
@@ -322,15 +443,11 @@
           "named": true
         },
         {
-          "type": "modifier",
-          "named": true
-        },
-        {
           "type": "namespaced_identifier",
           "named": true
         },
         {
-          "type": "primitive_type",
+          "type": "parameter_list",
           "named": true
         },
         {
@@ -349,7 +466,11 @@
       "required": false,
       "types": [
         {
-          "type": "parameter",
+          "type": "declaration_parameter",
+          "named": true
+        },
+        {
+          "type": "instanciation_parameter",
           "named": true
         }
       ]
@@ -357,6 +478,11 @@
   },
   {
     "type": "primitive_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "property_parameter",
     "named": true,
     "fields": {}
   },
@@ -385,7 +511,15 @@
           "named": true
         },
         {
+          "type": "new_instance",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -439,6 +573,21 @@
     }
   },
   {
+    "type": "string_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "unary_expression",
     "named": true,
     "fields": {},
@@ -463,7 +612,15 @@
           "named": true
         },
         {
+          "type": "new_instance",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -479,6 +636,10 @@
   },
   {
     "type": "!",
+    "named": false
+  },
+  {
+    "type": "\"",
     "named": false
   },
   {
@@ -554,6 +715,10 @@
     "named": false
   },
   {
+    "type": "construct",
+    "named": false
+  },
+  {
     "type": "double",
     "named": false
   },
@@ -566,11 +731,19 @@
     "named": false
   },
   {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
     "type": "extern",
     "named": false
   },
   {
     "type": "float",
+    "named": false
+  },
+  {
+    "type": "get",
     "named": false
   },
   {
@@ -614,6 +787,10 @@
     "named": false
   },
   {
+    "type": "new",
+    "named": false
+  },
+  {
     "type": "number",
     "named": true
   },
@@ -651,6 +828,10 @@
   },
   {
     "type": "return",
+    "named": false
+  },
+  {
+    "type": "set",
     "named": false
   },
   {

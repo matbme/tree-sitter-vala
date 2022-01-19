@@ -38,9 +38,9 @@ public virtual int mult (int x, int y, out int z) {
         (primitive_type)
         (identifier)
         (parameter_list
-            (parameter (primitive_type) (identifier))
-            (parameter (primitive_type) (identifier))
-            (parameter (modifier) (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier))
+            (declaration_parameter (modifier) (primitive_type) (identifier))
         )
         (block
             (assignment (identifier) (binary_expression (identifier) (identifier)))

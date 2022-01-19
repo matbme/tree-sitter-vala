@@ -55,8 +55,10 @@ module.exports = grammar({
         ),
 
         _type: $ => choice(
-            $.primitive_type
-            // TODO: arrays, generics, namespaced
+            $.primitive_type,
+            $.namespaced_identifier,
+            $.camel_cased_identifier
+            // TODO: arrays, generics
         ),
 
         primitive_type: $ => choice(
@@ -93,11 +95,17 @@ module.exports = grammar({
 
         parameter_list: $ => seq(
             '(',
-            optional(seq($.parameter, repeat(seq(',', $.parameter)))),
+            optional(seq($._parameter, repeat(seq(',', $._parameter)))),
             ')'
         ),
 
-        parameter: $ => seq(repeat($.modifier), $._type, $._identifiers),
+        _parameter: $ => choice($.declaration_parameter, $.instanciation_parameter),
+
+        declaration_parameter: $ => seq(repeat($.modifier), $._type, $._identifiers),
+        instanciation_parameter: $ => prec(3, seq(
+            optional($.modifier),
+            choice($._identifiers, $.string_literal)
+        )),
 
         block: $ => seq(
             '{',
@@ -131,8 +139,25 @@ module.exports = grammar({
             repeat($.modifier),
             choice($._type, 'var'),
             $._identifiers,
-            optional(seq('=', $._expression)),
-            ';'
+            choice(
+                seq('=', $._expression, ';'),
+                seq('{', $.gobject_property_acces, '}'),
+                ';'
+            )
+        ),
+
+       property_parameter: $ => choice(
+            'get',
+            'set',
+            'construct'
+        ),
+
+        gobject_property_acces: $ => repeat1(
+            seq(
+                optional($.modifier),
+                $.property_parameter,
+                choice($.block, ';')
+            )
         ),
 
         namespace: $ => seq(
@@ -145,7 +170,15 @@ module.exports = grammar({
             $._identifiers,
             $.number,
             $.unary_expression,
-            $.binary_expression
+            $.binary_expression,
+            $.string_literal,
+            $.new_instance
+        ),
+
+        new_instance: $ => seq(
+            optional('new'),
+            $._identifiers,
+            $.parameter_list
         ),
 
         unary_expression: $ => prec(3, choice(
@@ -158,6 +191,20 @@ module.exports = grammar({
             prec.left(2, seq($._expression, '/', $._expression)),
             prec.left(1, seq($._expression, '+', $._expression)),
             prec.left(1, seq($._expression, '-', $._expression))
+        ),
+
+        escape_sequence: $ => token(prec(1, seq(
+            '\\',
+            /\w/
+        ))),
+
+        string_literal: $ => seq(
+            '"',
+            repeat(choice(
+                token.immediate(prec(1, /[^\\"\n]+/)),
+                $.escape_sequence
+            )),
+            '"'
         ),
 
         _identifiers: $ => choice(

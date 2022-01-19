@@ -35,3 +35,45 @@ public class MyClass : GLib.Object {
         (block (comment))
     )
 )
+
+
+====================================
+Class with GObject-stype properties
+====================================
+
+public class MyClass : Object {
+    private int year_of_birth = 2493;
+
+    public int age {
+        get { return current_year - year_of_birth; }
+        set { year_of_birth = current_year - value; }
+    }
+}
+
+---
+
+(source_file
+    (class_declaration
+        (modifier)
+        (camel_cased_identifier)
+        (camel_cased_identifier)
+        (block
+            (declaration (modifier) (primitive_type) (identifier) (number))
+            (declaration
+                (modifier)
+                (primitive_type)
+                (identifier)
+                (gobject_property_acces
+                    (property_parameter) (block
+                        (return_statement
+                            (binary_expression (identifier) (identifier))
+                        )
+                    )
+                    (property_parameter) (block
+                        (assignment (identifier) (binary_expression (identifier) (identifier)))
+                    )
+                )
+            )
+        )
+    )
+)
