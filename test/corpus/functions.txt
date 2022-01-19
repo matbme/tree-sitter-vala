@@ -48,3 +48,28 @@ public virtual int mult (int x, int y, out int z) {
         )
     )
 )
+
+
+=============================================
+Function with string-value pairs as argument
+=============================================
+
+var obj = Object (
+              x: 10,
+              y: "test"
+          );
+
+---
+
+(source_file
+    (declaration
+        (identifier)
+        (function_call
+            (camel_cased_identifier)
+            (parameter_list
+                (instanciation_parameter (identifier) (number))
+                (instanciation_parameter (identifier) (string_literal))
+            )
+        )
+    )
+)

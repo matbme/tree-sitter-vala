@@ -77,3 +77,29 @@ public class MyClass : Object {
         )
     )
 )
+
+
+===============================
+Class with GObject constructor
+===============================
+
+public class MyClass : Object {
+    construct {
+        // ...
+    }
+}
+
+---
+
+(source_file
+    (class_declaration
+        (modifier)
+        (camel_cased_identifier)
+        (camel_cased_identifier)
+        (block
+            (gobject_contruct (block
+                (comment)
+            ))
+        )
+    )
+)

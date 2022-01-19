@@ -10,7 +10,8 @@ module.exports = grammar({
             $.namespace,
             $.declaration,
             $._statement,
-            $.class_declaration
+            $.class_declaration,
+            $.gobject_contruct
         ),
 
         function_definition: $ => seq(
@@ -19,6 +20,12 @@ module.exports = grammar({
             $._identifiers,
             $.parameter_list,
             $.block
+        ),
+
+        function_call: $ => seq(
+            repeat($.modifier),
+            $._identifiers,
+            $.parameter_list
         ),
 
         class_declaration: $ => seq(
@@ -102,18 +109,16 @@ module.exports = grammar({
         _parameter: $ => choice($.declaration_parameter, $.instanciation_parameter),
 
         declaration_parameter: $ => seq(repeat($.modifier), $._type, $._identifiers),
+
         instanciation_parameter: $ => prec(3, seq(
-            optional($.modifier),
-            choice($._identifiers, $.string_literal)
+            repeat($.modifier),
+            optional(seq($._identifiers, ':')),
+            choice($._identifiers, $.string_literal, $.number)
         )),
 
         block: $ => seq(
             '{',
-            repeat(
-                choice(
-                    $._top_level
-                )
-            ),
+            repeat($._top_level),
             '}'
         ),
 
@@ -160,6 +165,11 @@ module.exports = grammar({
             )
         ),
 
+        gobject_contruct: $ => seq(
+            'construct',
+            $.block
+        ),
+
         namespace: $ => seq(
             'namespace',
             $._identifiers,
@@ -172,13 +182,13 @@ module.exports = grammar({
             $.unary_expression,
             $.binary_expression,
             $.string_literal,
+            $.function_call,
             $.new_instance
         ),
 
         new_instance: $ => seq(
-            optional('new'),
-            $._identifiers,
-            $.parameter_list
+            'new',
+            $.function_call
         ),
 
         unary_expression: $ => prec(3, choice(

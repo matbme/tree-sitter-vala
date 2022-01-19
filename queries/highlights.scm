@@ -14,6 +14,11 @@
   (identifier) @method
 )
 
+(function_call
+  (modifier) @keyword
+  (identifier) @method
+)
+
 ; Modifiers
 (modifier) @keyword
 
@@ -85,3 +90,13 @@
 (new_instance
     "new" @keyword
 )
+
+; Parameters
+
+(instanciation_parameter
+    (modifier) @keyword
+)
+
+; GObject construct
+
+"construct" @constructor

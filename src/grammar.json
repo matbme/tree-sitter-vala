@@ -34,6 +34,10 @@
         {
           "type": "SYMBOL",
           "name": "class_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "gobject_contruct"
         }
       ]
     },
@@ -62,6 +66,26 @@
         {
           "type": "SYMBOL",
           "name": "block"
+        }
+      ]
+    },
+    "function_call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "modifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_list"
         }
       ]
     },
@@ -420,11 +444,27 @@
         "type": "SEQ",
         "members": [
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "modifier"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "modifier"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_identifiers"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
@@ -441,6 +481,10 @@
               {
                 "type": "SYMBOL",
                 "name": "string_literal"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "number"
               }
             ]
           }
@@ -457,13 +501,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_top_level"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_top_level"
           }
         },
         {
@@ -649,6 +688,19 @@
         ]
       }
     },
+    "gobject_contruct": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "construct"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
     "namespace": {
       "type": "SEQ",
       "members": [
@@ -691,6 +743,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "function_call"
+        },
+        {
+          "type": "SYMBOL",
           "name": "new_instance"
         }
       ]
@@ -699,24 +755,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "new"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "STRING",
+          "value": "new"
         },
         {
           "type": "SYMBOL",
-          "name": "_identifiers"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "parameter_list"
+          "name": "function_call"
         }
       ]
     },

@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -60,6 +64,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -119,6 +127,10 @@
         },
         {
           "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "gobject_contruct",
           "named": true
         },
         {
@@ -186,6 +198,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -267,6 +283,41 @@
     }
   },
   {
+    "type": "function_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "function_definition",
     "named": true,
     "fields": {},
@@ -304,6 +355,21 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "gobject_contruct",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
           "named": true
         }
       ]
@@ -354,6 +420,10 @@
         },
         {
           "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -431,27 +501,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "camel_cased_identifier",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "namespaced_identifier",
-          "named": true
-        },
-        {
-          "type": "parameter_list",
-          "named": true
-        },
-        {
-          "type": "uppercased_identifier",
+          "type": "function_call",
           "named": true
         }
       ]
@@ -500,6 +554,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -562,6 +620,10 @@
           "named": true
         },
         {
+          "type": "gobject_contruct",
+          "named": true
+        },
+        {
           "type": "namespace",
           "named": true
         },
@@ -601,6 +663,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
