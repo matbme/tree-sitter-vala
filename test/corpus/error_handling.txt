@@ -1,0 +1,30 @@
+======================
+Try / Catch statement
+======================
+
+try {
+    i = 1;
+} catch (Error e) {
+    error (e.message);
+}
+
+---
+
+(source_file
+    (try_statement 
+        (block
+            (assignment (identifier) (number))
+        )
+        (parameter_list 
+            (declaration_parameter (camel_cased_identifier) (identifier))
+        )
+        (block
+            (function_call 
+                (identifier) 
+                (parameter_list (instanciation_parameter
+                    (namespaced_identifier (identifier) (identifier))
+                ))
+            )
+        )
+    )
+)

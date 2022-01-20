@@ -129,7 +129,8 @@ module.exports = grammar({
             $.if_statement,
             $.declaration,
             prec(1, $.switch_statement),
-            $.break_statement
+            $.break_statement,
+            $.try_statement
         ),
 
         _expression_statement: $ => seq($._expression, ';'),
@@ -184,6 +185,14 @@ module.exports = grammar({
         )),
 
         break_statement: $ => seq('break', ';'),
+
+        try_statement: $ => seq(
+            'try',
+            $.block,
+            'catch',
+            $.parameter_list,
+            $.block
+        ),
 
         declaration: $ => seq(
             repeat($.modifier),

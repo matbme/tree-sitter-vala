@@ -141,3 +141,10 @@
 ; Variable
 
 (identifier) @variable
+
+; Try statement
+
+[
+"try"
+"catch"
+] @exception
