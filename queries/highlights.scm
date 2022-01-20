@@ -148,3 +148,11 @@
 "try"
 "catch"
 ] @exception
+
+; Enum
+
+"enum" @keyword
+(enum_declaration
+    (camel_cased_identifier) @type
+    (_)*
+)

@@ -1,16 +1,21 @@
 module.exports = grammar({
     name: 'vala',
 
+    extras: $ => [
+        $.comment,
+        /\s|\\\r?\n/
+    ],
+
     rules: {
         source_file: $ => repeat($._top_level),
 
         _top_level: $ => choice(
             $.function_definition,
-            $.comment,
             $.namespace,
             $.using,
             $._statement,
             $.class_declaration,
+            $.enum_declaration,
             $.gobject_contruct
         ),
 
@@ -34,6 +39,18 @@ module.exports = grammar({
             $.camel_cased_identifier,
             optional(seq(':', $._identifiers)),
             $.block
+        ),
+
+        enum_declaration: $ => seq(
+            repeat($.modifier),
+            'enum',
+            $._identifiers,
+            '{',
+            seq(
+                repeat(seq($.uppercased_identifier, ',')),
+                $.uppercased_identifier
+            ),
+            '}'
         ),
 
         modifier: $ => choice(
@@ -93,11 +110,6 @@ module.exports = grammar({
             'uint64',
             'ulong',
             'ushort'
-        ),
-
-        comment: $ => choice(
-            /\/\/.+/, // Single line
-            /\/\*(.|\n)+\*\// // Multi-line
         ),
 
         parameter_list: $ => seq(
@@ -303,6 +315,12 @@ module.exports = grammar({
             $._single_identifier, repeat1(seq('.', $._single_identifier))
         )),
 
-        number: $ => /\d+/
+        number: $ => /\d+/,
+
+        comment: $ => token(choice(
+            /\/\/.+/, // Single line
+            /\/\*(.|\n)+\*\// // Multi-line
+        )),
+
     }
 });

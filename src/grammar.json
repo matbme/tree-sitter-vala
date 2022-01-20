@@ -17,10 +17,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "comment"
-        },
-        {
-          "type": "SYMBOL",
           "name": "namespace"
         },
         {
@@ -34,6 +30,10 @@
         {
           "type": "SYMBOL",
           "name": "class_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "enum_declaration"
         },
         {
           "type": "SYMBOL",
@@ -139,6 +139,59 @@
         {
           "type": "SYMBOL",
           "name": "block"
+        }
+      ]
+    },
+    "enum_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "modifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "enum"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "uppercased_identifier"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  }
+                ]
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "uppercased_identifier"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },
@@ -354,19 +407,6 @@
         {
           "type": "STRING",
           "value": "ushort"
-        }
-      ]
-    },
-    "comment": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "\\/\\/.+"
-        },
-        {
-          "type": "PATTERN",
-          "value": "\\/\\*(.|\\n)+\\*\\/"
         }
       ]
     },
@@ -1423,12 +1463,32 @@
     "number": {
       "type": "PATTERN",
       "value": "\\d+"
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "\\/\\/.+"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\/\\*(.|\\n)+\\*\\/"
+          }
+        ]
+      }
     }
   },
   "extras": [
     {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "\\s|\\\\\\r?\\n"
     }
   ],
   "conflicts": [],

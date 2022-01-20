@@ -130,11 +130,11 @@
           "named": true
         },
         {
-          "type": "comment",
+          "type": "declaration",
           "named": true
         },
         {
-          "type": "declaration",
+          "type": "enum_declaration",
           "named": true
         },
         {
@@ -242,11 +242,11 @@
           "named": true
         },
         {
-          "type": "comment",
+          "type": "declaration",
           "named": true
         },
         {
-          "type": "declaration",
+          "type": "enum_declaration",
           "named": true
         },
         {
@@ -352,11 +352,6 @@
     }
   },
   {
-    "type": "comment",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "declaration",
     "named": true,
     "fields": {},
@@ -445,6 +440,37 @@
         },
         {
           "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
           "named": true
         },
         {
@@ -888,11 +914,11 @@
           "named": true
         },
         {
-          "type": "comment",
+          "type": "declaration",
           "named": true
         },
         {
-          "type": "declaration",
+          "type": "enum_declaration",
           "named": true
         },
         {
@@ -1229,6 +1255,10 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "const",
     "named": false
   },
@@ -1254,6 +1284,10 @@
   },
   {
     "type": "ensures",
+    "named": false
+  },
+  {
+    "type": "enum",
     "named": false
   },
   {

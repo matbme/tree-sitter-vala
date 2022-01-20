@@ -30,4 +30,6 @@ Translators comment
 
 /// TRANSLATORS: Where yould we be without you?
 
+---
+
 (source_file (comment))

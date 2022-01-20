@@ -42,3 +42,23 @@ void declare () {
         )
     )
 )
+
+
+=================
+Enum declaration
+=================
+
+enum WindowType {
+    TOPLEVEL,
+    POPUP
+}
+
+---
+
+(source_file
+    (enum_declaration 
+        (camel_cased_identifier)
+        (uppercased_identifier)
+        (uppercased_identifier)
+    )
+)
