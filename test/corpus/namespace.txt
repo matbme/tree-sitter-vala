@@ -25,3 +25,16 @@ namespace Testers {
         )
     )
 )
+
+
+======
+Using
+======
+
+using Gtk;
+
+---
+
+(source_file
+    (using (camel_cased_identifier))
+)

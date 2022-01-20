@@ -8,6 +8,7 @@ module.exports = grammar({
             $.function_definition,
             $.comment,
             $.namespace,
+            $.using,
             $._statement,
             $.class_declaration,
             $.gobject_contruct
@@ -22,8 +23,8 @@ module.exports = grammar({
         ),
 
         function_call: $ => seq(
-            repeat($.modifier),
-            $._identifiers,
+            field('modifier', repeat($.modifier)),
+            field('identifier', $._identifiers),
             $.parameter_list
         ),
 
@@ -220,7 +221,13 @@ module.exports = grammar({
             $.block
         ),
 
-        _expression: $ => choice(
+        using: $ => seq(
+            'using',
+            $._identifiers,
+            ';'
+        ),
+
+        _expression: $ => prec(1, choice(
             $._identifiers,
             $.number,
             $.unary_expression,
@@ -228,7 +235,7 @@ module.exports = grammar({
             $.string_literal,
             $.function_call,
             $.new_instance
-        ),
+        )),
 
         new_instance: $ => seq(
             'new',
@@ -267,10 +274,14 @@ module.exports = grammar({
         ),
 
         _identifiers: $ => choice(
+            $._single_identifier,
+            $.namespaced_identifier
+        ),
+
+        _single_identifier: $ => choice(
             $.identifier,
             $.camel_cased_identifier,
-            $.uppercased_identifier,
-            $.namespaced_identifier
+            $.uppercased_identifier
         ),
 
         identifier: $ => /[a-z_]+/,
@@ -279,16 +290,9 @@ module.exports = grammar({
 
         uppercased_identifier: $ => /[A-Z_]+/,
 
-        namespaced_identifier: $ => seq(
-            choice($.identifier, $.camel_cased_identifier),
-            repeat1(
-                seq('.', choice(
-                    $.identifier, 
-                    $.camel_cased_identifier, 
-                    $.uppercased_identifier)
-                )
-            )
-        ),
+        namespaced_identifier: $ => prec.left(seq(
+            $._single_identifier, repeat1(seq('.', $._single_identifier))
+        )),
 
         number: $ => /\d+/
     }

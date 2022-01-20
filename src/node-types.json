@@ -192,6 +192,10 @@
         {
           "type": "uppercased_identifier",
           "named": true
+        },
+        {
+          "type": "using",
+          "named": true
         }
       ]
     }
@@ -295,6 +299,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "using",
           "named": true
         }
       ]
@@ -441,33 +449,46 @@
   {
     "type": "function_call",
     "named": true,
-    "fields": {},
+    "fields": {
+      "identifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "camel_cased_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "namespaced_identifier",
+            "named": true
+          },
+          {
+            "type": "uppercased_identifier",
+            "named": true
+          }
+        ]
+      },
+      "modifier": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "modifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "camel_cased_identifier",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "modifier",
-          "named": true
-        },
-        {
-          "type": "namespaced_identifier",
-          "named": true
-        },
-        {
           "type": "parameter_list",
-          "named": true
-        },
-        {
-          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -917,6 +938,10 @@
         {
           "type": "uppercased_identifier",
           "named": true
+        },
+        {
+          "type": "using",
+          "named": true
         }
       ]
     }
@@ -1024,6 +1049,33 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "using",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
           "named": true
         },
         {
@@ -1343,6 +1395,10 @@
   },
   {
     "type": "ushort",
+    "named": false
+  },
+  {
+    "type": "using",
     "named": false
   },
   {

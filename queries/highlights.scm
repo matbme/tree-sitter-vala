@@ -1,26 +1,37 @@
-; Variable
-
-(identifier) @variable
-
-"var" @definition.var
-
 ; Constant
 (uppercased_identifier) @constant
 
 ; Methods
 
 (function_definition
-  (modifier) @keyword
+  (modifier)* @keyword
   (identifier) @method
 )
 
 (function_call
-  (modifier) @keyword
-  (identifier) @method
+  modifier: (modifier)* @keyword
+  identifier: [
+  	(identifier) @method
+    (camel_cased_identifier) @type
+    (namespaced_identifier
+        (identifier) @method .
+    )
+  ]
+  (parameter_list)
+)
+
+(parameter_list
+  "(" @punctuation.bracket
+  [
+  	(declaration_parameter)
+    (instanciation_parameter)
+  ]+
+  ")" @punctuation.bracket
 )
 
 ; Modifiers
 (modifier) @keyword
+"var" @keyword
 
 ; Types
 
@@ -35,10 +46,25 @@
 (number) @number
 
 (namespaced_identifier
+  [
+    (camel_cased_identifier) @namespace
     (identifier) @variable
-    (camel_cased_identifier) @type
-    (uppercased_identifier) @constant
+  ]
+  (
+    "."
+    [
+      (identifier) @parameter
+      (camel_cased_identifier) @type
+      (uppercased_identifier) @constant
+    ]
+  )+
 )
+
+[
+";"
+"."
+","
+] @punctuation.delimiter
 
 ; Operators
 
@@ -56,9 +82,11 @@
 ; Namespace
 
 (namespace
-  "namespace" @namespace
-  (camel_cased_identifier) @definition.namespace
+  "namespace" @include
+  (camel_cased_identifier) @namespace
 )
+
+"using" @include
 
 ; Brackets
 
@@ -109,3 +137,7 @@
 "case"
 "default"
 ] @conditional
+
+; Variable
+
+(identifier) @variable
