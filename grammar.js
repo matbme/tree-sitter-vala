@@ -8,7 +8,6 @@ module.exports = grammar({
             $.function_definition,
             $.comment,
             $.namespace,
-            $.declaration,
             $._statement,
             $.class_declaration,
             $.gobject_contruct
@@ -61,12 +60,12 @@ module.exports = grammar({
             'out'
         ),
 
-        _type: $ => choice(
+        _type: $ => prec(5, choice(
             $.primitive_type,
             $.namespaced_identifier,
             $.camel_cased_identifier
             // TODO: arrays, generics
-        ),
+        )),
 
         primitive_type: $ => choice(
             'bool',
@@ -123,9 +122,16 @@ module.exports = grammar({
         ),
 
         _statement: $ => choice(
+            $._expression_statement,
             $.return_statement,
             $.assignment,
+            $.if_statement,
+            $.declaration,
+            prec(1, $.switch_statement),
+            $.break_statement
         ),
+
+        _expression_statement: $ => seq($._expression, ';'),
 
         return_statement: $ => seq(
             'return',
@@ -139,6 +145,44 @@ module.exports = grammar({
             $._expression,
             ';'
         ),
+
+        if_statement: $ => prec.right(seq(
+            'if',
+            '(',
+            $._expression,
+            ')',
+            choice($.block, $._expression, $._statement),
+            optional(seq(
+                'else',
+                choice($.block, $._expression, $._statement),
+            ))
+        )),
+
+        switch_statement: $ => seq(
+            'switch',
+            '(',
+            $._identifiers,
+            ')',
+            $.switch_block
+        ),
+
+        switch_block: $ => prec.left(seq(
+            '{',
+            repeat1($.case),
+            '}'
+        )),
+
+        case: $ => prec.left(1, seq(
+            choice(
+                seq('case', $._expression),
+                'default'
+            ),
+            ':',
+            choice($.block, repeat($._top_level)),
+            optional($.break_statement)
+        )),
+
+        break_statement: $ => seq('break', ';'),
 
         declaration: $ => seq(
             repeat($.modifier),
@@ -191,7 +235,7 @@ module.exports = grammar({
             $.function_call
         ),
 
-        unary_expression: $ => prec(3, choice(
+        unary_expression: $ => prec(4, choice(
             seq('-', $._expression),
             seq('!', $._expression)
         )),
@@ -200,7 +244,12 @@ module.exports = grammar({
             prec.left(2, seq($._expression, '*', $._expression)),
             prec.left(2, seq($._expression, '/', $._expression)),
             prec.left(1, seq($._expression, '+', $._expression)),
-            prec.left(1, seq($._expression, '-', $._expression))
+            prec.left(1, seq($._expression, '-', $._expression)),
+            prec.left(3, seq($._expression, '<', $._expression)),
+            prec.left(3, seq($._expression, '<=', $._expression)),
+            prec.left(3, seq($._expression, '>', $._expression)),
+            prec.left(3, seq($._expression, '>=', $._expression)),
+            prec.left(3, seq($._expression, '==', $._expression)),
         ),
 
         escape_sequence: $ => token(prec(1, seq(

@@ -1,3 +1,6 @@
-int five () {
-    return 5;
+if (i > 0) {
+    // ...
+}
+else {
+    // ...
 }

@@ -1,0 +1,51 @@
+=============
+If statement
+=============
+
+if (i > 0) {
+    // ...
+}
+else {
+    // ...
+}
+
+---
+
+(source_file
+    (if_statement
+        (binary_expression (identifier) (number))
+        (block (comment))
+        (block (comment))
+    )
+)
+
+
+=================
+Switch statement
+=================
+
+switch (a) {
+    case 1:
+        foo ();
+        break;
+    case 2:
+    default:
+        bar ();
+        break;
+}
+
+---
+
+(source_file
+    (switch_statement (identifier) (switch_block
+        (case (number)
+            (function_call (identifier) (parameter_list))
+            (break_statement)
+        )
+        (case (number))
+        (case
+            (function_call (identifier) (parameter_list))
+            (break_statement)
+        )
+    ))
+)

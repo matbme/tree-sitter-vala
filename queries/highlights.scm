@@ -28,6 +28,7 @@
 
 ; Keywords
 "return" @keyword.return
+"break" @keyword
 
 ; Other
 
@@ -87,9 +88,7 @@
 
 ; Assignment and declaration
 
-(new_instance
-    "new" @keyword
-)
+"new" @keyword
 
 ; Parameters
 
@@ -100,3 +99,13 @@
 ; GObject construct
 
 "construct" @constructor
+
+; Conditionals
+
+[
+"if"
+"else"
+"switch"
+"case"
+"default"
+] @conditional
