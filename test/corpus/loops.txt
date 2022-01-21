@@ -1,0 +1,95 @@
+=========
+For loop
+=========
+
+for (int a = 0; a < 10; a++) { 
+    print (a); 
+}
+
+---
+
+(source_file
+    (for_statement
+        (declaration (primitive_type) (identifier) (number))
+        (binary_expression (identifier) (number))
+        (unary_expression (identifier))
+        (block
+            (function_call (identifier) 
+                (parameter_list (instanciation_parameter (identifier)))
+            )
+        )
+    )
+)
+
+
+=======================
+For loop without block
+=======================
+
+for (int a = 0; a < 10; a++) print (a);
+
+---
+
+(source_file
+    (for_statement
+        (declaration (primitive_type) (identifier) (number))
+        (binary_expression (identifier) (number))
+        (unary_expression (identifier))
+        (function_call (identifier) 
+            (parameter_list (instanciation_parameter (identifier)))
+        )
+    )
+)
+
+
+==================
+Foreach statement
+==================
+
+foreach (int a in int_array) { 
+    print (a); 
+}
+
+---
+
+(source_file
+    (foreach_statement (primitive_type) (identifier) (identifier) (block
+        (function_call (identifier) 
+            (parameter_list (instanciation_parameter (identifier)))
+        )
+    ))
+)
+
+
+================
+While statement
+================
+
+while (a > b) {
+    a--;
+}
+
+---
+
+(source_file
+    (while_statement (binary_expression (identifier) (identifier)) (block
+        (unary_expression (identifier))
+    ))
+)
+
+
+===================
+Do-while statement
+===================
+
+do {
+    a--; 
+} while (a > b);
+
+---
+
+(source_file
+    (do_while_statement (block
+        (unary_expression (identifier))
+    ) (binary_expression (identifier) (identifier)))
+)

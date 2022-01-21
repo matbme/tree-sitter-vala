@@ -156,3 +156,19 @@
     (camel_cased_identifier) @type
     (_)*
 )
+
+; Loop
+
+[
+"for"
+"foreach"
+"in"
+"while"
+"do"
+] @repeat
+
+(foreach_statement
+  (_)*
+  loop_item: (identifier) @variable
+  (_)*
+)

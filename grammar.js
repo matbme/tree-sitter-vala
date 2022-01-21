@@ -142,7 +142,11 @@ module.exports = grammar({
             $.declaration,
             prec(1, $.switch_statement),
             $.break_statement,
-            $.try_statement
+            $.try_statement,
+            $.for_statement,
+            $.foreach_statement,
+            $.while_statement,
+            $.do_while_statement
         ),
 
         _expression_statement: $ => seq($._expression, ';'),
@@ -206,6 +210,46 @@ module.exports = grammar({
             $.block
         ),
 
+        for_statement: $ => seq(
+            'for',
+            '(',
+            choice($.declaration, ';'),
+            optional($._expression),
+            ';',
+            optional($._expression),
+            ')',
+            choice($.block, $._statement)
+        ),
+
+        foreach_statement: $ => seq(
+            'foreach',
+            '(',
+            choice($._type, 'var'),
+            field('loop_item', $._identifiers),
+            'in',
+            $._identifiers,
+            ')',
+            choice($.block, $._statement)
+        ),
+
+        while_statement: $ => seq(
+            'while',
+            '(',
+            $._expression,
+            ')',
+            choice($.block, $._statement)
+        ),
+
+        do_while_statement: $ => seq(
+            'do',
+            choice($.block, $._statement),
+            'while',
+            '(',
+            $._expression,
+            ')',
+            ';'
+        ),
+
         declaration: $ => seq(
             repeat($.modifier),
             choice($._type, 'var'),
@@ -265,7 +309,9 @@ module.exports = grammar({
 
         unary_expression: $ => prec(4, choice(
             seq('-', $._expression),
-            seq('!', $._expression)
+            seq('!', $._expression),
+            prec.right(seq($._expression, '++')),
+            prec.right(seq($._expression, '--')),
         )),
 
         binary_expression: $ => choice(

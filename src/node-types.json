@@ -134,7 +134,19 @@
           "named": true
         },
         {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
           "type": "enum_declaration",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
           "named": true
         },
         {
@@ -199,6 +211,10 @@
         },
         {
           "type": "using",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -246,7 +262,19 @@
           "named": true
         },
         {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
           "type": "enum_declaration",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
           "named": true
         },
         {
@@ -311,6 +339,10 @@
         },
         {
           "type": "using",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -450,6 +482,105 @@
     }
   },
   {
+    "type": "do_while_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "try_statement",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "enum_declaration",
     "named": true,
     "fields": {},
@@ -475,6 +606,231 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "try_statement",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "foreach_statement",
+    "named": true,
+    "fields": {
+      "loop_item": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "camel_cased_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "namespaced_identifier",
+            "named": true
+          },
+          {
+            "type": "uppercased_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "try_statement",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -642,6 +998,18 @@
           "named": true
         },
         {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -687,6 +1055,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -918,7 +1290,19 @@
           "named": true
         },
         {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
           "type": "enum_declaration",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
           "named": true
         },
         {
@@ -983,6 +1367,10 @@
         },
         {
           "type": "using",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -1147,6 +1535,105 @@
     }
   },
   {
+    "type": "while_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "foreach_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "try_statement",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -1171,11 +1658,19 @@
     "named": false
   },
   {
+    "type": "++",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
   {
     "type": "-",
+    "named": false
+  },
+  {
+    "type": "--",
     "named": false
   },
   {
@@ -1271,6 +1766,10 @@
     "named": false
   },
   {
+    "type": "do",
+    "named": false
+  },
+  {
     "type": "double",
     "named": false
   },
@@ -1303,6 +1802,14 @@
     "named": false
   },
   {
+    "type": "for",
+    "named": false
+  },
+  {
+    "type": "foreach",
+    "named": false
+  },
+  {
     "type": "get",
     "named": false
   },
@@ -1312,6 +1819,10 @@
   },
   {
     "type": "if",
+    "named": false
+  },
+  {
+    "type": "in",
     "named": false
   },
   {
@@ -1496,6 +2007,10 @@
   },
   {
     "type": "weak",
+    "named": false
+  },
+  {
+    "type": "while",
     "named": false
   },
   {
