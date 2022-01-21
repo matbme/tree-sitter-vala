@@ -62,3 +62,26 @@ enum WindowType {
         (uppercased_identifier)
     )
 )
+
+
+==================
+Array declaration
+==================
+
+int[] int_array = { 1, 2, 3 };
+int a = int_array[0];
+
+---
+
+(source_file
+    (declaration
+        (array_type (primitive_type))
+        (identifier)
+        (array_initializer (number) (number) (number))
+    )
+    (declaration
+        (primitive_type)
+        (identifier)
+        (array_identifier (identifier) (number))
+    )
+)

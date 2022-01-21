@@ -9,7 +9,6 @@
 )
 
 (function_call
-  modifier: (modifier)* @keyword
   identifier: [
   	(identifier) @method
     (camel_cased_identifier) @type

@@ -28,7 +28,6 @@ module.exports = grammar({
         ),
 
         function_call: $ => seq(
-            field('modifier', repeat($.modifier)),
             field('identifier', $._identifiers),
             $.parameter_list
         ),
@@ -78,11 +77,23 @@ module.exports = grammar({
             'out'
         ),
 
-        _type: $ => prec(5, choice(
+        _type: $ => choice(
+            $._single_type,
+            $.array_type
+            // TODO: generics
+        ),
+
+        _single_type: $ => prec(5, choice(
             $.primitive_type,
             $.namespaced_identifier,
             $.camel_cased_identifier
-            // TODO: arrays, generics
+        )),
+
+        array_type: $ => prec(5, seq(
+            $._single_type,
+            '[',
+            optional($._expression),
+            ']'
         )),
 
         primitive_type: $ => choice(
@@ -255,11 +266,18 @@ module.exports = grammar({
             choice($._type, 'var'),
             $._identifiers,
             choice(
-                seq('=', $._expression, ';'),
+                seq('=', choice($._expression, $.array_initializer), ';'),
                 seq('{', $.gobject_property_acces, '}'),
                 ';'
             )
         ),
+
+        array_initializer: $ => prec.right(seq(
+            '{',
+            $._expression,
+            repeat(seq(',', $._expression)),
+            '}'
+        )),
 
        property_parameter: $ => choice(
             'get',
@@ -342,13 +360,21 @@ module.exports = grammar({
 
         _identifiers: $ => choice(
             $._single_identifier,
-            $.namespaced_identifier
+            $.namespaced_identifier,
         ),
+
+        array_identifier: $ => prec.right(10, seq(
+            $._expression,
+            '[',
+            $._expression,
+            ']'
+        )),
 
         _single_identifier: $ => choice(
             $.identifier,
             $.camel_cased_identifier,
-            $.uppercased_identifier
+            $.uppercased_identifier,
+            $.array_identifier
         ),
 
         identifier: $ => /[a-z_]+/,
@@ -358,7 +384,11 @@ module.exports = grammar({
         uppercased_identifier: $ => /[A-Z_]+/,
 
         namespaced_identifier: $ => prec.left(seq(
-            $._single_identifier, repeat1(seq('.', $._single_identifier))
+            $._single_identifier, 
+            repeat1(prec.right(2, seq(
+                '.', 
+                $._single_identifier
+            )))
         )),
 
         number: $ => /\d+/,
