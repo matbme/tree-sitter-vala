@@ -342,6 +342,10 @@ module.exports = grammar({
             prec.left(3, seq($._expression, '>', $._expression)),
             prec.left(3, seq($._expression, '>=', $._expression)),
             prec.left(3, seq($._expression, '==', $._expression)),
+            prec.left(3, seq($._expression, '+=', $._expression)),
+            prec.left(3, seq($._expression, '-=', $._expression)),
+            prec.left(3, seq($._expression, '*=', $._expression)),
+            prec.left(3, seq($._expression, '/=', $._expression)),
         ),
 
         escape_sequence: $ => token(prec(1, seq(
