@@ -73,3 +73,25 @@ var obj = Object (
         )
     )
 )
+
+
+========================================
+Function call with closure as parameter
+========================================
+
+my_sorting_algorithm(data, (a, b) => {
+    return 0;
+});
+
+---
+
+(source_file
+    (function_call (identifier) (parameter_list
+        (instanciation_parameter (identifier))
+        (instanciation_parameter (closure
+            (identifier) (identifier) (block
+                (return_statement (number))
+            )
+        ))
+    ))
+)

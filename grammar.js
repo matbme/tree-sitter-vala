@@ -102,7 +102,8 @@ module.exports = grammar({
             'owned',
             'unowned',
             'ref',
-            'out'
+            'out',
+            'delegate'
         ),
 
         _type: $ => choice(
@@ -171,7 +172,7 @@ module.exports = grammar({
         instanciation_parameter: $ => prec(3, seq(
             repeat($.modifier),
             optional(seq($._identifiers, ':')),
-            choice($._identifiers, $.string_literal, $.number)
+            choice($._identifiers, $.string_literal, $.number, $.closure)
         )),
 
         block: $ => seq(
@@ -294,6 +295,14 @@ module.exports = grammar({
             $._expression,
             ')',
             ';'
+        ),
+
+        closure: $ => seq(
+            '(',
+            optional(seq($._identifiers, repeat(seq(',', $._identifiers)))),
+            ')',
+            token('=>'),
+            $.block
         ),
 
         declaration: $ => seq(

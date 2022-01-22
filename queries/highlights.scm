@@ -216,3 +216,10 @@
 (generic_identifier
   (camel_cased_identifier) @type
 )
+
+; Closure
+
+(closure
+    (identifier)* @variable
+    (_)*
+)
