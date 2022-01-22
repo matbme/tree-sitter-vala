@@ -97,11 +97,32 @@
   ")"
 ] @punctuation.bracket
 
+; declaration
+(declaration
+  (_)*
+  [
+    (camel_cased_identifier) @type
+    (_)
+  ]
+  (_)*
+)
+
 ; Classes
 
 (class_declaration
     (modifier) @keyword
     "class" @keyword
+    [
+      (camel_cased_identifier) @type
+      (generic_identifier (_) @type )
+    ]
+)
+
+; Interfaces
+
+(interface_declaration
+    (modifier) @keyword
+    "interface" @keyword
     [
       (camel_cased_identifier) @type
       (generic_identifier (_) @type )

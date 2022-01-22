@@ -351,6 +351,10 @@
           "named": true
         },
         {
+          "type": "interface_declaration",
+          "named": true
+        },
+        {
           "type": "namespace",
           "named": true
         },
@@ -372,6 +376,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct_declaration",
           "named": true
         },
         {
@@ -483,6 +491,10 @@
           "named": true
         },
         {
+          "type": "interface_declaration",
+          "named": true
+        },
+        {
           "type": "namespace",
           "named": true
         },
@@ -504,6 +516,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct_declaration",
           "named": true
         },
         {
@@ -579,7 +595,38 @@
   {
     "type": "declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "type_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "camel_cased_identifier",
+            "named": true
+          },
+          {
+            "type": "generic_type",
+            "named": true
+          },
+          {
+            "type": "namespaced_identifier",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -593,10 +640,6 @@
           "named": true
         },
         {
-          "type": "array_type",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -606,10 +649,6 @@
         },
         {
           "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "generic_type",
           "named": true
         },
         {
@@ -634,10 +673,6 @@
         },
         {
           "type": "number",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
           "named": true
         },
         {
@@ -1473,6 +1508,49 @@
     }
   },
   {
+    "type": "interface_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "generic_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "modifier",
     "named": true,
     "fields": {}
@@ -1711,6 +1789,10 @@
           "named": true
         },
         {
+          "type": "interface_declaration",
+          "named": true
+        },
+        {
           "type": "namespace",
           "named": true
         },
@@ -1732,6 +1814,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct_declaration",
           "named": true
         },
         {
@@ -1771,6 +1857,45 @@
       "types": [
         {
           "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -2043,6 +2168,14 @@
     "named": false
   },
   {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "&&",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -2275,6 +2408,10 @@
     "named": false
   },
   {
+    "type": "interface",
+    "named": false
+  },
+  {
     "type": "internal",
     "named": false
   },
@@ -2359,6 +2496,10 @@
     "named": false
   },
   {
+    "type": "struct",
+    "named": false
+  },
+  {
     "type": "switch",
     "named": false
   },
@@ -2440,6 +2581,14 @@
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "||",
     "named": false
   },
   {

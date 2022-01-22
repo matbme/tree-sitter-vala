@@ -146,3 +146,35 @@ public class MyClass<G> : Object {
         )
     )
 )
+
+
+======================
+Interface declaration
+======================
+
+public interface ITest : GLib.Object {
+    public abstract int data_1 { get; set; }
+    public abstract void method_1();
+}
+
+---
+
+(source_file
+    (interface_declaration
+        (modifier)
+        (camel_cased_identifier)
+        (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier))
+        (block
+            (declaration (modifier) (modifier) (primitive_type) (identifier)
+                (gobject_property_acces (property_parameter) (property_parameter))
+            )
+            (function_definition 
+                (modifier)
+                (modifier)
+                (primitive_type)
+                (identifier)
+                (parameter_list)
+            )
+        )
+    )
+)

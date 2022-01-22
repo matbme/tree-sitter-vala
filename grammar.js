@@ -15,6 +15,8 @@ module.exports = grammar({
             $.using,
             $._statement,
             $.class_declaration,
+            $.struct_declaration,
+            $.interface_declaration,
             $.enum_declaration,
             $.gobject_contruct
         ),
@@ -24,7 +26,7 @@ module.exports = grammar({
             $._type,
             $._identifiers,
             $.parameter_list,
-            $.block
+            choice($.block, ';')
         ),
 
         function_call: $ => seq(
@@ -39,7 +41,22 @@ module.exports = grammar({
             repeat($.modifier),
             'class',
             choice($._identifiers, $.generic_identifier),
-            optional(seq(':', $._identifiers)),
+            optional(seq(':', seq($._identifiers, repeat(seq(',', $._identifiers))))),
+            $.block
+        ),
+
+        interface_declaration: $ => seq(
+            repeat($.modifier),
+            'interface',
+            choice($._identifiers, $.generic_identifier),
+            optional(seq(':', seq($._identifiers, repeat(seq(',', $._identifiers))))),
+            $.block
+        ),
+
+        struct_declaration: $ => seq(
+            repeat($.modifier),
+            'struct',
+            $._identifiers,
             $.block
         ),
 
@@ -273,7 +290,7 @@ module.exports = grammar({
 
         declaration: $ => seq(
             repeat($.modifier),
-            choice($._type, 'var'),
+            field('type_name', choice($._type, 'var')),
             $._identifiers,
             choice(
                 seq('=', choice($._expression, $.array_initializer), ';'),
@@ -335,7 +352,7 @@ module.exports = grammar({
             $.function_call
         ),
 
-        unary_expression: $ => prec(4, choice(
+        unary_expression: $ => prec(6, choice(
             seq('-', $._expression),
             seq('!', $._expression),
             prec.right(seq($._expression, '++')),
@@ -356,6 +373,10 @@ module.exports = grammar({
             prec.left(3, seq($._expression, '-=', $._expression)),
             prec.left(3, seq($._expression, '*=', $._expression)),
             prec.left(3, seq($._expression, '/=', $._expression)),
+            prec.left(3, seq($._expression, '&&', $._expression)),
+            prec.left(3, seq($._expression, '||', $._expression)),
+            prec.left(4, seq($._expression, '&', $._expression)),
+            prec.left(4, seq($._expression, '|', $._expression)),
         ),
 
         escape_sequence: $ => token(prec(1, seq(
@@ -398,7 +419,7 @@ module.exports = grammar({
             $.array_identifier,
         ),
 
-        identifier: $ => /[a-z_]+/,
+        identifier: $ => /[a-z_]\w*/,
 
         camel_cased_identifier: $ => /(?:[A-Z][a-z]*)+/,
 
