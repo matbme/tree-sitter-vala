@@ -103,3 +103,46 @@ public class MyClass : Object {
         )
     )
 )
+
+
+========================
+Class with generic type
+========================
+
+public class MyClass<G> : Object {
+	public ArrayList<G> data;
+
+    construct {
+		data = new ArrayList<G> ();
+    }
+}
+
+---
+
+(source_file
+    (class_declaration
+        (modifier)
+        (generic_identifier (camel_cased_identifier) (camel_cased_identifier))
+        (camel_cased_identifier)
+        (block
+            (declaration
+                (modifier)
+                (generic_type (camel_cased_identifier) (camel_cased_identifier))
+                (identifier)
+            )
+            (gobject_contruct (block
+                (assignment 
+                    (identifier) 
+                    (new_instance
+                        (function_call
+                            (generic_type 
+                                (camel_cased_identifier) (camel_cased_identifier)
+                            )
+                            (parameter_list)
+                        )
+                    )
+                )
+            ))
+        )
+    )
+)

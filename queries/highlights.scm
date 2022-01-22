@@ -12,6 +12,7 @@
   identifier: [
   	(identifier) @method
     (camel_cased_identifier) @type
+    (generic_type (_) @type) 
     (namespaced_identifier
         (identifier) @method .
     )
@@ -101,7 +102,10 @@
 (class_declaration
     (modifier) @keyword
     "class" @keyword
-    (camel_cased_identifier) @type
+    [
+      (camel_cased_identifier) @type
+      (generic_identifier (_) @type )
+    ]
 )
 
 ; Class properties
@@ -170,4 +174,14 @@
   (_)*
   loop_item: (identifier) @variable
   (_)*
+)
+
+; Generics
+
+(generic_type
+  (camel_cased_identifier) @type
+)
+
+(generic_identifier
+  (camel_cased_identifier) @type
 )

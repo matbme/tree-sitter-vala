@@ -28,14 +28,17 @@ module.exports = grammar({
         ),
 
         function_call: $ => seq(
-            field('identifier', $._identifiers),
+            field('identifier', choice(
+                $._identifiers,
+                $.generic_type
+            )),
             $.parameter_list
         ),
 
         class_declaration: $ => seq(
             repeat($.modifier),
             'class',
-            $.camel_cased_identifier,
+            choice($._identifiers, $.generic_identifier),
             optional(seq(':', $._identifiers)),
             $.block
         ),
@@ -79,8 +82,8 @@ module.exports = grammar({
 
         _type: $ => choice(
             $._single_type,
-            $.array_type
-            // TODO: generics
+            $.array_type,
+            $.generic_type
         ),
 
         _single_type: $ => prec(5, choice(
@@ -94,6 +97,13 @@ module.exports = grammar({
             '[',
             optional($._expression),
             ']'
+        )),
+
+        generic_type: $ => prec(5, seq(
+            $._single_type,
+            '<',
+            $._expression,
+            '>'
         )),
 
         primitive_type: $ => choice(
@@ -374,11 +384,18 @@ module.exports = grammar({
             ']'
         )),
 
+        generic_identifier: $ => prec.right(10, seq(
+            choice($.identifier, $.camel_cased_identifier, $.namespaced_identifier),
+            '<',
+            choice($._single_identifier, $._type),
+            '>'
+    )),
+
         _single_identifier: $ => choice(
             $.identifier,
             $.camel_cased_identifier,
             $.uppercased_identifier,
-            $.array_identifier
+            $.array_identifier,
         ),
 
         identifier: $ => /[a-z_]+/,

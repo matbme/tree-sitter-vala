@@ -76,8 +76,17 @@
           "type": "FIELD",
           "name": "identifier",
           "content": {
-            "type": "SYMBOL",
-            "name": "_identifiers"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_identifiers"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_type"
+              }
+            ]
           }
         },
         {
@@ -101,8 +110,17 @@
           "value": "class"
         },
         {
-          "type": "SYMBOL",
-          "name": "camel_cased_identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_identifiers"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "generic_identifier"
+            }
+          ]
         },
         {
           "type": "CHOICE",
@@ -287,6 +305,10 @@
         {
           "type": "SYMBOL",
           "name": "array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_type"
         }
       ]
     },
@@ -340,6 +362,31 @@
           {
             "type": "STRING",
             "value": "]"
+          }
+        ]
+      }
+    },
+    "generic_type": {
+      "type": "PREC",
+      "value": 5,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_single_type"
+          },
+          {
+            "type": "STRING",
+            "value": "<"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ">"
           }
         ]
       }
@@ -1844,6 +1891,53 @@
           {
             "type": "STRING",
             "value": "]"
+          }
+        ]
+      }
+    },
+    "generic_identifier": {
+      "type": "PREC_RIGHT",
+      "value": 10,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "camel_cased_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "namespaced_identifier"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "<"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_single_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_type"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": ">"
           }
         ]
       }
