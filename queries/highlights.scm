@@ -118,6 +118,16 @@
     ]
 )
 
+(class_constructor_definition
+  (modifier)* @keyword
+  [
+    (identifier)
+    (namespaced_identifier)
+    (camel_cased_identifier)
+  ] @type
+  (_)*
+)
+
 ; Interfaces
 
 (interface_declaration

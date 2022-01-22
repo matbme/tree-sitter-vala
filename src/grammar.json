@@ -33,6 +33,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "class_constructor_definition"
+        },
+        {
+          "type": "SYMBOL",
           "name": "struct_declaration"
         },
         {
@@ -180,6 +184,30 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "class_constructor_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "modifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_list"
         },
         {
           "type": "SYMBOL",

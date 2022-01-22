@@ -15,6 +15,7 @@ module.exports = grammar({
             $.using,
             $._statement,
             $.class_declaration,
+            $.class_constructor_definition,
             $.struct_declaration,
             $.interface_declaration,
             $.enum_declaration,
@@ -42,6 +43,13 @@ module.exports = grammar({
             'class',
             choice($._identifiers, $.generic_identifier),
             optional(seq(':', seq($._identifiers, repeat(seq(',', $._identifiers))))),
+            $.block
+        ),
+
+        class_constructor_definition: $ => seq(
+            repeat($.modifier),
+            $._identifiers,
+            $.parameter_list,
             $.block
         ),
 

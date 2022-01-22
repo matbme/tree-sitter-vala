@@ -307,6 +307,10 @@
           "named": true
         },
         {
+          "type": "class_constructor_definition",
+          "named": true
+        },
+        {
           "type": "class_declaration",
           "named": true
         },
@@ -447,6 +451,10 @@
           "named": true
         },
         {
+          "type": "class_constructor_definition",
+          "named": true
+        },
+        {
           "type": "class_declaration",
           "named": true
         },
@@ -544,6 +552,49 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_constructor_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -1742,6 +1793,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "class_constructor_definition",
           "named": true
         },
         {
