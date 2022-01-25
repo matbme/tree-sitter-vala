@@ -75,7 +75,7 @@ int a = int_array[0];
 
 (source_file
     (declaration
-        (array_type (primitive_type))
+        (array_identifier (primitive_type))
         (identifier)
         (array_initializer (number) (number) (number))
     )
@@ -84,6 +84,28 @@ int a = int_array[0];
         (identifier)
         (array_identifier (identifier) (number))
     )
+)
+
+
+=================
+Namespaced array
+=================
+
+print (my_instance.store[1]);
+
+---
+
+(source_file
+    (function_call
+        (identifier)
+        (parameter_list
+            (instanciation_parameter (array_identifier 
+                (namespaced_identifier (identifier) (identifier)) 
+                (number)
+            ))
+        )
+    )
+
 )
 
 

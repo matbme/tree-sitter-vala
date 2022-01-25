@@ -10,7 +10,8 @@ module.exports = grammar({
         [$.chained_function_call, $._identifiers],
         [$.generic_identifier, $._expression],
         [$._identifiers, $.generic_identifier],
-        [$.chained_function_call, $._identifiers, $.generic_identifier]
+        [$.chained_function_call, $._identifiers, $.generic_identifier],
+        [$._type, $._single_identifier]
     ],
 
     word: $ => $.identifier,
@@ -120,20 +121,14 @@ module.exports = grammar({
 
         _type: $ => choice(
             $._single_type,
-            $.array_type,
+            $.array_identifier,
             $.generic_identifier
         ),
 
-        _single_type: $ => prec(5, choice(
+        _single_type: $ => prec(3, choice(
             $.primitive_type,
             $.namespaced_identifier,
             $.camel_cased_identifier
-        )),
-
-        array_type: $ => prec(5, seq(
-            $._single_type,
-            '[',
-            ']'
         )),
 
         primitive_type: $ => choice(
@@ -421,12 +416,12 @@ module.exports = grammar({
             $.namespaced_identifier,
         ),
 
-        array_identifier: $ => seq(
-            $._expression,
+        array_identifier: $ => prec(5, seq(
+            choice($._expression, $.primitive_type),
             '[',
-            $._expression,
+            optional($._expression),
             ']'
-        ),
+        )),
 
         generic_identifier: $ => prec.dynamic(10, seq(
             $._single_identifier,
