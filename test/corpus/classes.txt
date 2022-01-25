@@ -127,7 +127,7 @@ public class MyClass<G> : Object {
         (block
             (declaration
                 (modifier)
-                (generic_type (camel_cased_identifier) (camel_cased_identifier))
+                (generic_identifier (camel_cased_identifier) (camel_cased_identifier))
                 (identifier)
             )
             (gobject_contruct (block
@@ -135,7 +135,7 @@ public class MyClass<G> : Object {
                     (identifier) 
                     (new_instance
                         (function_call
-                            (generic_type 
+                            (generic_identifier 
                                 (camel_cased_identifier) (camel_cased_identifier)
                             )
                             (parameter_list)

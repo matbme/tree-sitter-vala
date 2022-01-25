@@ -20,6 +20,10 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -75,6 +79,10 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -114,27 +122,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
           "type": "camel_cased_identifier",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -142,27 +134,7 @@
           "named": true
         },
         {
-          "type": "new_instance",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
           "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -186,6 +158,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
           "named": true
         },
         {
@@ -241,6 +217,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
           "named": true
         },
         {
@@ -307,11 +287,19 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "class_constructor_definition",
           "named": true
         },
         {
           "type": "class_declaration",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -451,11 +439,19 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "class_constructor_definition",
           "named": true
         },
         {
           "type": "class_declaration",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -552,6 +548,37 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chained_function_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -695,7 +722,7 @@
             "named": true
           },
           {
-            "type": "generic_type",
+            "type": "generic_identifier",
             "named": true
           },
           {
@@ -731,6 +758,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
           "named": true
         },
         {
@@ -797,7 +828,7 @@
           "named": true
         },
         {
-          "type": "generic_type",
+          "type": "generic_identifier",
           "named": true
         },
         {
@@ -853,6 +884,14 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -994,6 +1033,14 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "declaration",
           "named": true
         },
@@ -1128,6 +1175,14 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "declaration",
           "named": true
         },
@@ -1148,7 +1203,7 @@
           "named": true
         },
         {
-          "type": "generic_type",
+          "type": "generic_identifier",
           "named": true
         },
         {
@@ -1223,7 +1278,7 @@
             "named": true
           },
           {
-            "type": "generic_type",
+            "type": "generic_identifier",
             "named": true
           },
           {
@@ -1277,7 +1332,7 @@
           "named": true
         },
         {
-          "type": "generic_type",
+          "type": "generic_identifier",
           "named": true
         },
         {
@@ -1328,7 +1383,7 @@
           "named": true
         },
         {
-          "type": "generic_type",
+          "type": "generic_identifier",
           "named": true
         },
         {
@@ -1341,65 +1396,6 @@
         },
         {
           "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "uppercased_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "generic_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array_identifier",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "camel_cased_identifier",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "namespaced_identifier",
-          "named": true
-        },
-        {
-          "type": "new_instance",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
           "named": true
         },
         {
@@ -1477,6 +1473,14 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -1716,6 +1720,10 @@
       "required": true,
       "types": [
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         }
@@ -1769,6 +1777,10 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
           "named": true
         },
         {
@@ -1835,11 +1847,19 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "class_constructor_definition",
           "named": true
         },
         {
           "type": "class_declaration",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -2085,6 +2105,10 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -2180,6 +2204,14 @@
         },
         {
           "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {

@@ -12,7 +12,7 @@
   identifier: [
   	(identifier) @method
     (camel_cased_identifier) @type
-    (generic_type (_) @type) 
+    (generic_identifier (_) @type) 
     (namespaced_identifier
         (identifier) @method .
     )
@@ -208,10 +208,6 @@
 )
 
 ; Generics
-
-(generic_type
-  (camel_cased_identifier) @type
-)
 
 (generic_identifier
   (camel_cased_identifier) @type

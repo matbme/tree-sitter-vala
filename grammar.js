@@ -6,6 +6,15 @@ module.exports = grammar({
         /\s|\\\r?\n/
     ],
 
+    conflicts: $ => [
+        [$.chained_function_call, $._identifiers],
+        [$.generic_identifier, $._expression],
+        [$._identifiers, $.generic_identifier],
+        [$.chained_function_call, $._identifiers, $.generic_identifier]
+    ],
+
+    word: $ => $.identifier,
+
     rules: {
         source_file: $ => repeat($._top_level),
 
@@ -30,12 +39,14 @@ module.exports = grammar({
             choice($.block, ';')
         ),
 
-        function_call: $ => seq(
-            field('identifier', choice(
-                $._identifiers,
-                $.generic_type
-            )),
+        function_call: $ => prec(3, seq(
+            field('identifier', choice($._identifiers, $.generic_identifier)),
             $.parameter_list
+        )),
+
+        chained_function_call: $ => seq(
+            $.function_call,
+            repeat1(prec.left(seq('.', choice($.function_call, $._single_identifier))))
         ),
 
         class_declaration: $ => seq(
@@ -75,7 +86,8 @@ module.exports = grammar({
             '{',
             seq(
                 repeat(seq($.uppercased_identifier, ',')),
-                $.uppercased_identifier
+                $.uppercased_identifier,
+                optional(',')
             ),
             '}'
         ),
@@ -109,7 +121,7 @@ module.exports = grammar({
         _type: $ => choice(
             $._single_type,
             $.array_type,
-            $.generic_type
+            $.generic_identifier
         ),
 
         _single_type: $ => prec(5, choice(
@@ -121,15 +133,7 @@ module.exports = grammar({
         array_type: $ => prec(5, seq(
             $._single_type,
             '[',
-            optional($._expression),
             ']'
-        )),
-
-        generic_type: $ => prec(5, seq(
-            $._single_type,
-            '<',
-            $._expression,
-            '>'
         )),
 
         primitive_type: $ => choice(
@@ -193,7 +197,8 @@ module.exports = grammar({
             $.for_statement,
             $.foreach_statement,
             $.while_statement,
-            $.do_while_statement
+            $.do_while_statement,
+            $.closure
         ),
 
         _expression_statement: $ => seq($._expression, ';'),
@@ -361,12 +366,13 @@ module.exports = grammar({
             $.binary_expression,
             $.string_literal,
             $.function_call,
+            $.chained_function_call,
             $.new_instance
         )),
 
         new_instance: $ => seq(
             'new',
-            $.function_call
+            choice($.function_call, $.chained_function_call)
         ),
 
         unary_expression: $ => prec(6, choice(
@@ -377,21 +383,21 @@ module.exports = grammar({
         )),
 
         binary_expression: $ => choice(
-            prec.left(2, seq($._expression, '*', $._expression)),
-            prec.left(2, seq($._expression, '/', $._expression)),
-            prec.left(1, seq($._expression, '+', $._expression)),
-            prec.left(1, seq($._expression, '-', $._expression)),
-            prec.left(3, seq($._expression, '<', $._expression)),
-            prec.left(3, seq($._expression, '<=', $._expression)),
-            prec.left(3, seq($._expression, '>', $._expression)),
-            prec.left(3, seq($._expression, '>=', $._expression)),
-            prec.left(3, seq($._expression, '==', $._expression)),
-            prec.left(3, seq($._expression, '+=', $._expression)),
-            prec.left(3, seq($._expression, '-=', $._expression)),
-            prec.left(3, seq($._expression, '*=', $._expression)),
-            prec.left(3, seq($._expression, '/=', $._expression)),
-            prec.left(3, seq($._expression, '&&', $._expression)),
-            prec.left(3, seq($._expression, '||', $._expression)),
+            prec.left(4, seq($._expression, '*', $._expression)),
+            prec.left(4, seq($._expression, '/', $._expression)),
+            prec.left(4, seq($._expression, '+', $._expression)),
+            prec.left(4, seq($._expression, '-', $._expression)),
+            prec.left(4, seq($._expression, '<', $._expression)),
+            prec.left(4, seq($._expression, '<=', $._expression)),
+            prec.left(4, seq($._expression, '>', $._expression)),
+            prec.left(4, seq($._expression, '>=', $._expression)),
+            prec.left(4, seq($._expression, '==', $._expression)),
+            prec.left(4, seq($._expression, '+=', $._expression)),
+            prec.left(4, seq($._expression, '-=', $._expression)),
+            prec.left(4, seq($._expression, '*=', $._expression)),
+            prec.left(4, seq($._expression, '/=', $._expression)),
+            prec.left(4, seq($._expression, '&&', $._expression)),
+            prec.left(4, seq($._expression, '||', $._expression)),
             prec.left(4, seq($._expression, '&', $._expression)),
             prec.left(4, seq($._expression, '|', $._expression)),
         ),
@@ -415,19 +421,19 @@ module.exports = grammar({
             $.namespaced_identifier,
         ),
 
-        array_identifier: $ => prec.right(10, seq(
+        array_identifier: $ => seq(
             $._expression,
             '[',
             $._expression,
             ']'
-        )),
+        ),
 
-        generic_identifier: $ => prec.right(10, seq(
-            choice($.identifier, $.camel_cased_identifier, $.namespaced_identifier),
+        generic_identifier: $ => prec.dynamic(10, seq(
+            $._single_identifier,
             '<',
             choice($._single_identifier, $._type),
             '>'
-    )),
+        )),
 
         _single_identifier: $ => choice(
             $.identifier,
