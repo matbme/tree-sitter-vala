@@ -56,3 +56,20 @@ void calculate (int a, int b) {
         )
     )
 )
+
+
+================
+Null coalescing
+================
+
+print (name ?? "unknown person");
+
+---
+
+(source_file
+    (function_call (identifier) (parameter_list
+        (instanciation_parameter
+            (binary_expression (identifier) (string_literal))
+        )
+    ))
+)

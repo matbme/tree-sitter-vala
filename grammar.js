@@ -177,7 +177,7 @@ module.exports = grammar({
         instanciation_parameter: $ => prec(3, seq(
             repeat($.modifier),
             optional(seq($._identifiers, ':')),
-            choice($._identifiers, $.string_literal, $.number, $.closure)
+            choice($._expression, $.closure)
         )),
 
         block: $ => seq(
@@ -389,19 +389,28 @@ module.exports = grammar({
             prec.left(4, seq($._expression, '/', $._expression)),
             prec.left(4, seq($._expression, '+', $._expression)),
             prec.left(4, seq($._expression, '-', $._expression)),
+            prec.left(4, seq($._expression, '%', $._expression)),
             prec.left(4, seq($._expression, '<', $._expression)),
             prec.left(4, seq($._expression, '<=', $._expression)),
             prec.left(4, seq($._expression, '>', $._expression)),
             prec.left(4, seq($._expression, '>=', $._expression)),
             prec.left(4, seq($._expression, '==', $._expression)),
+            prec.left(4, seq($._expression, '!=', $._expression)),
             prec.left(4, seq($._expression, '+=', $._expression)),
             prec.left(4, seq($._expression, '-=', $._expression)),
             prec.left(4, seq($._expression, '*=', $._expression)),
             prec.left(4, seq($._expression, '/=', $._expression)),
+            prec.left(4, seq($._expression, '%=', $._expression)),
             prec.left(4, seq($._expression, '&&', $._expression)),
             prec.left(4, seq($._expression, '||', $._expression)),
             prec.left(4, seq($._expression, '&', $._expression)),
             prec.left(4, seq($._expression, '|', $._expression)),
+            prec.left(4, seq($._expression, '^', $._expression)),
+            prec.left(4, seq($._expression, '~', $._expression)),
+            prec.left(4, seq($._expression, '|=', $._expression)),
+            prec.left(4, seq($._expression, '&=', $._expression)),
+            prec.left(4, seq($._expression, '^=', $._expression)),
+            prec.left(4, seq($._expression, '??', $._expression)),
         ),
 
         escape_sequence: $ => token(prec(1, seq(
