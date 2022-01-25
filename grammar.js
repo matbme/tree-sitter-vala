@@ -122,7 +122,8 @@ module.exports = grammar({
         _type: $ => choice(
             $._single_type,
             $.array_identifier,
-            $.generic_identifier
+            $.generic_identifier,
+            $.nullable_type
         ),
 
         _single_type: $ => prec(3, choice(
@@ -156,6 +157,11 @@ module.exports = grammar({
             'uint64',
             'ulong',
             'ushort'
+        ),
+
+        nullable_type: $ => seq(
+            $._type,
+            '?'
         ),
 
         parameter_list: $ => seq(
@@ -362,7 +368,8 @@ module.exports = grammar({
             $.string_literal,
             $.function_call,
             $.chained_function_call,
-            $.new_instance
+            $.new_instance,
+            $.null
         )),
 
         new_instance: $ => seq(
@@ -450,6 +457,8 @@ module.exports = grammar({
                 $._single_identifier
             )))
         )),
+
+        null: $ => 'null',
 
         number: $ => /\d+/,
 

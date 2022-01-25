@@ -75,6 +75,8 @@
   "/"
 ] @operator
 
+(null) @keyword
+
 ; Comments
 
 (comment) @comment

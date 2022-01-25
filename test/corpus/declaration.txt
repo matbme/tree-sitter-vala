@@ -128,3 +128,20 @@ struct Color {
         (declaration (modifier) (primitive_type) (identifier))
     ))
 )
+
+
+==============================
+Nullable variable declaration
+==============================
+
+Color? c = null;
+
+---
+
+(source_file
+    (declaration
+        type_name: (nullable_type (camel_cased_identifier))
+        (identifier)
+        (null)
+    )
+)

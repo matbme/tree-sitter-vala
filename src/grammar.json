@@ -533,6 +533,10 @@
         {
           "type": "SYMBOL",
           "name": "generic_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nullable_type"
         }
       ]
     },
@@ -655,6 +659,19 @@
         {
           "type": "STRING",
           "value": "ushort"
+        }
+      ]
+    },
+    "nullable_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_type"
+        },
+        {
+          "type": "STRING",
+          "value": "?"
         }
       ]
     },
@@ -1676,6 +1693,10 @@
           {
             "type": "SYMBOL",
             "name": "new_instance"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "null"
           }
         ]
       }
@@ -2343,6 +2364,10 @@
           }
         ]
       }
+    },
+    "null": {
+      "type": "STRING",
+      "value": "null"
     },
     "number": {
       "type": "PATTERN",
