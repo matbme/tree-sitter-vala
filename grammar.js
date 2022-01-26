@@ -378,6 +378,7 @@ module.exports = grammar({
             $.number,
             $.unary_expression,
             $.binary_expression,
+            $.ternary_expression,
             $.string_literal,
             $.function_call,
             $.chained_function_call,
@@ -433,6 +434,14 @@ module.exports = grammar({
             prec.left(4, seq($._expression, '^=', $._expression)),
             prec.left(4, seq($._expression, '??', $._expression)),
         ),
+
+        ternary_expression: $ => prec.right(seq(
+            field('condition', $._expression),
+            '?',
+            field('match', $._expression),
+            ':',
+            field('else', $._expression)
+        )),
 
         escape_sequence: $ => token(prec(1, seq(
             '\\',

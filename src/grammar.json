@@ -1722,6 +1722,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "ternary_expression"
+          },
+          {
+            "type": "SYMBOL",
             "name": "string_literal"
           },
           {
@@ -2409,6 +2413,47 @@
           }
         }
       ]
+    },
+    "ternary_expression": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "condition",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "?"
+          },
+          {
+            "type": "FIELD",
+            "name": "match",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "FIELD",
+            "name": "else",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
     },
     "escape_sequence": {
       "type": "TOKEN",

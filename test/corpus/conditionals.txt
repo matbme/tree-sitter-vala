@@ -49,3 +49,20 @@ switch (a) {
         )
     ))
 )
+
+
+===================
+Ternary expression
+===================
+
+string sig = a > 0 ? "positive" : "negative";
+
+---
+
+(source_file
+    (declaration (primitive_type) (identifier) (ternary_expression
+        (binary_expression (identifier) (number))
+        (string_literal)
+        (string_literal)
+    ))
+)
