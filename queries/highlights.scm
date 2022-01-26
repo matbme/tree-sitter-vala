@@ -221,3 +221,11 @@
     (identifier)* @variable
     (_)*
 )
+
+; Casting
+
+(dynamic_cast
+  (_)
+  "as" @keyword
+  (_)
+)

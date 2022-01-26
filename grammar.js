@@ -369,6 +369,8 @@ module.exports = grammar({
             $.function_call,
             $.chained_function_call,
             $.new_instance,
+            // $.static_cast,
+            $.dynamic_cast,
             $.null
         )),
 
@@ -427,6 +429,20 @@ module.exports = grammar({
             '"'
         ),
 
+        // FIXME: This breaks constructor definition... for some reason
+        // static_cast: $ => prec(12, seq(
+        //     '(',
+        //     field('type', $._type),
+        //     ')',
+        //     field('value', $._expression)
+        // )),
+
+        dynamic_cast: $ => prec(12, seq(
+            $._expression,
+            'as',
+            $._type
+        )),
+
         _identifiers: $ => choice(
             $._single_identifier,
             $.namespaced_identifier,
@@ -455,15 +471,15 @@ module.exports = grammar({
 
         identifier: $ => /[a-z_]\w*/,
 
-        camel_cased_identifier: $ => /(?:[A-Z][a-z]*)+/,
+        camel_cased_identifier: $ => /[A-Z]\w*/,
 
-        uppercased_identifier: $ => /[A-Z_]+/,
+        uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
         namespaced_identifier: $ => prec.left(seq(
-            $._single_identifier, 
+            choice($._single_identifier, $.string_literal),
             repeat1(prec.right(2, seq(
                 '.', 
-                $._single_identifier
+                choice($._single_identifier, $.string_literal),
             )))
         )),
 
