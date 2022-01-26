@@ -39,10 +39,7 @@ module.exports = grammar({
             $.parameter_list,
             optional(seq(
                 'throws', 
-                seq(
-                    $.camel_cased_identifier, 
-                    repeat(seq(',', $.camel_cased_identifier))
-                )
+                commaSep1($.camel_cased_identifier),
             )),
             choice($.block, ';')
         ),
@@ -61,7 +58,7 @@ module.exports = grammar({
             repeat($.modifier),
             'class',
             choice($._identifiers, $.generic_identifier),
-            optional(seq(':', seq($._identifiers, repeat(seq(',', $._identifiers))))),
+            optional(seq(':', commaSep1($._identifiers))),
             $.block
         ),
 
@@ -76,7 +73,7 @@ module.exports = grammar({
             repeat($.modifier),
             'interface',
             choice($._identifiers, $.generic_identifier),
-            optional(seq(':', seq($._identifiers, repeat(seq(',', $._identifiers))))),
+            optional(seq(':', commaSep1($._identifiers))),
             $.block
         ),
 
@@ -175,7 +172,7 @@ module.exports = grammar({
 
         parameter_list: $ => seq(
             '(',
-            optional(seq($._parameter, repeat(seq(',', $._parameter)))),
+            commaSep($._parameter),
             ')'
         ),
 
@@ -320,7 +317,7 @@ module.exports = grammar({
 
         closure: $ => seq(
             '(',
-            optional(seq($._identifiers, repeat(seq(',', $._identifiers)))),
+            commaSep($._identifiers),
             ')',
             token('=>'),
             $.block
