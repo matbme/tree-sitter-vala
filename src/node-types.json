@@ -111,6 +111,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -202,6 +206,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -286,6 +294,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -376,6 +388,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -460,6 +476,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -611,6 +631,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -791,6 +815,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -1136,6 +1164,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1322,6 +1354,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1434,6 +1470,10 @@
         },
         {
           "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -1604,6 +1644,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -1794,6 +1838,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -2218,6 +2266,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -2361,6 +2413,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -2649,11 +2705,6 @@
     }
   },
   {
-    "type": "primitive_type",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "property_parameter",
     "named": true,
     "fields": {}
@@ -2720,6 +2771,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -2874,6 +2929,10 @@
           "named": true
         },
         {
+          "type": "static_cast",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -2914,6 +2973,132 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "static_cast",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_identifier",
+            "named": true
+          },
+          {
+            "type": "camel_cased_identifier",
+            "named": true
+          },
+          {
+            "type": "generic_identifier",
+            "named": true
+          },
+          {
+            "type": "namespaced_identifier",
+            "named": true
+          },
+          {
+            "type": "nullable_type",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "address_of_identifier",
+            "named": true
+          },
+          {
+            "type": "array_identifier",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "camel_cased_identifier",
+            "named": true
+          },
+          {
+            "type": "chained_function_call",
+            "named": true
+          },
+          {
+            "type": "dynamic_cast",
+            "named": true
+          },
+          {
+            "type": "free_pointer",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirection_identifier",
+            "named": true
+          },
+          {
+            "type": "namespaced_identifier",
+            "named": true
+          },
+          {
+            "type": "new_instance",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "static_cast",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "throw_error",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "uppercased_identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -3101,6 +3286,10 @@
             "named": true
           },
           {
+            "type": "static_cast",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3183,6 +3372,10 @@
             "named": true
           },
           {
+            "type": "static_cast",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3262,6 +3455,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "static_cast",
             "named": true
           },
           {
@@ -3350,6 +3547,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -3456,6 +3657,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -3622,6 +3827,10 @@
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "static_cast",
           "named": true
         },
         {
@@ -3824,10 +4033,6 @@
     "named": false
   },
   {
-    "type": "bool",
-    "named": false
-  },
-  {
     "type": "break",
     "named": false
   },
@@ -3841,10 +4046,6 @@
   },
   {
     "type": "catch",
-    "named": false
-  },
-  {
-    "type": "char",
     "named": false
   },
   {
@@ -3880,10 +4081,6 @@
     "named": false
   },
   {
-    "type": "double",
-    "named": false
-  },
-  {
     "type": "dynamic",
     "named": false
   },
@@ -3909,10 +4106,6 @@
   },
   {
     "type": "extern",
-    "named": false
-  },
-  {
-    "type": "float",
     "named": false
   },
   {
@@ -3944,35 +4137,11 @@
     "named": false
   },
   {
-    "type": "int",
-    "named": false
-  },
-  {
-    "type": "int16",
-    "named": false
-  },
-  {
-    "type": "int32",
-    "named": false
-  },
-  {
-    "type": "int64",
-    "named": false
-  },
-  {
-    "type": "int8",
-    "named": false
-  },
-  {
     "type": "interface",
     "named": false
   },
   {
     "type": "internal",
-    "named": false
-  },
-  {
-    "type": "long",
     "named": false
   },
   {
@@ -4004,6 +4173,10 @@
     "named": false
   },
   {
+    "type": "primitive_type",
+    "named": true
+  },
+  {
     "type": "private",
     "named": false
   },
@@ -4032,27 +4205,11 @@
     "named": false
   },
   {
-    "type": "short",
-    "named": false
-  },
-  {
     "type": "signal",
     "named": false
   },
   {
-    "type": "size_t",
-    "named": false
-  },
-  {
-    "type": "ssize_t",
-    "named": false
-  },
-  {
     "type": "static",
-    "named": false
-  },
-  {
-    "type": "string",
     "named": false
   },
   {
@@ -4076,48 +4233,12 @@
     "named": false
   },
   {
-    "type": "uchar",
-    "named": false
-  },
-  {
-    "type": "uint",
-    "named": false
-  },
-  {
-    "type": "uint16",
-    "named": false
-  },
-  {
-    "type": "uint32",
-    "named": false
-  },
-  {
-    "type": "uint64",
-    "named": false
-  },
-  {
-    "type": "uint8",
-    "named": false
-  },
-  {
-    "type": "ulong",
-    "named": false
-  },
-  {
-    "type": "unichar",
-    "named": false
-  },
-  {
     "type": "unowned",
     "named": false
   },
   {
     "type": "uppercased_identifier",
     "named": true
-  },
-  {
-    "type": "ushort",
-    "named": false
   },
   {
     "type": "using",
@@ -4129,10 +4250,6 @@
   },
   {
     "type": "virtual",
-    "named": false
-  },
-  {
-    "type": "void",
     "named": false
   },
   {

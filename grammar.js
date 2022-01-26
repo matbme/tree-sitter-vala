@@ -11,7 +11,9 @@ module.exports = grammar({
         [$.generic_identifier, $._expression],
         [$._identifiers, $.generic_identifier],
         [$.chained_function_call, $._identifiers, $.generic_identifier],
-        [$._type, $._single_identifier]
+        [$._type, $._single_identifier],
+        [$.static_cast, $.dynamic_cast],
+        [$._type, $._identifiers]
     ],
 
     word: $ => $.identifier,
@@ -124,16 +126,16 @@ module.exports = grammar({
         ),
 
         _type: $ => choice(
-            prec(3, $.primitive_type),
-            prec(3, $.namespaced_identifier),
-            prec(3, $.camel_cased_identifier),
+            $.primitive_type,
+            $.namespaced_identifier,
+            $.camel_cased_identifier,
             $.array_identifier,
             $.generic_identifier,
             prec(10, $.nullable_type),
             prec(10, $.pointer_type)
         ),
 
-        primitive_type: $ => choice(
+        primitive_type: $ => token(choice(
             'bool',
             'char',
             'double',
@@ -158,7 +160,7 @@ module.exports = grammar({
             'uint64',
             'ulong',
             'ushort'
-        ),
+        )),
 
         nullable_type: $ => seq(
             $._type,
@@ -382,7 +384,7 @@ module.exports = grammar({
             $.chained_function_call,
             $.new_instance,
             $.throw_error,
-            // $.static_cast,
+            $.static_cast,
             $.dynamic_cast,
             $.free_pointer,
             $.null
@@ -467,13 +469,12 @@ module.exports = grammar({
             $._expression
         ),
 
-        // FIXME: This breaks constructor definition... for some reason
-        // static_cast: $ => prec(12, seq(
-        //     '(',
-        //     field('type', $._type),
-        //     ')',
-        //     field('value', $._expression)
-        // )),
+        static_cast: $ => prec(12, seq(
+            '(',
+            field('type', $._type),
+            ')',
+            field('value', $._expression)
+        )),
 
         dynamic_cast: $ => prec(12, seq(
             $._expression,

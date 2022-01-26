@@ -1,3 +1,20 @@
+====================
+Static Type Casting
+====================
+
+float f = (float) i;
+
+---
+
+(source_file
+    (declaration
+        (primitive_type)
+        (identifier)
+        (static_cast (primitive_type) (identifier))
+    )
+)
+
+
 =====================
 Dynamic Type Casting
 =====================
