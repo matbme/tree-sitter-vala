@@ -229,3 +229,8 @@
   "as" @keyword
   (_)
 )
+
+; Throw error
+
+"throws" @keyword
+"throw" @keyword

@@ -60,6 +60,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         },
@@ -124,6 +128,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -194,6 +202,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         },
@@ -258,6 +270,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -397,6 +413,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -557,6 +577,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -838,6 +862,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         },
@@ -996,6 +1024,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "try_statement",
           "named": true
         },
@@ -1080,6 +1112,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -1226,6 +1262,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -1384,6 +1424,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -1688,6 +1732,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "try_statement",
           "named": true
         },
@@ -1768,6 +1816,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -2035,6 +2087,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         },
@@ -2174,6 +2230,10 @@
           "named": true
         },
         {
+          "type": "throw_error",
+          "named": true
+        },
+        {
           "type": "try_statement",
           "named": true
         },
@@ -2301,6 +2361,77 @@
     }
   },
   {
+    "type": "throw_error",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "dynamic_cast",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "throw_error",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "try_statement",
     "named": true,
     "fields": {},
@@ -2373,6 +2504,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -2515,6 +2650,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_error",
           "named": true
         },
         {
@@ -2926,6 +3065,14 @@
   },
   {
     "type": "switch",
+    "named": false
+  },
+  {
+    "type": "throw",
+    "named": false
+  },
+  {
+    "type": "throws",
     "named": false
   },
   {

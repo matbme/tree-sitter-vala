@@ -37,6 +37,13 @@ module.exports = grammar({
             $._type,
             $._identifiers,
             $.parameter_list,
+            optional(seq(
+                'throws', 
+                seq(
+                    $.camel_cased_identifier, 
+                    repeat(seq(',', $.camel_cased_identifier))
+                )
+            )),
             choice($.block, ';')
         ),
 
@@ -369,6 +376,7 @@ module.exports = grammar({
             $.function_call,
             $.chained_function_call,
             $.new_instance,
+            $.throw_error,
             // $.static_cast,
             $.dynamic_cast,
             $.null
@@ -378,6 +386,11 @@ module.exports = grammar({
             'new',
             choice($.function_call, $.chained_function_call)
         ),
+
+        throw_error: $ => prec(7, seq(
+            'throw',
+            $._expression
+        )),
 
         unary_expression: $ => prec(6, choice(
             seq('-', $._expression),
