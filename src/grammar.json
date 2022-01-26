@@ -773,6 +773,10 @@
         {
           "type": "SYMBOL",
           "name": "instanciation_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ellipsis"
         }
       ]
     },
@@ -845,6 +849,10 @@
           }
         ]
       }
+    },
+    "ellipsis": {
+      "type": "STRING",
+      "value": "..."
     },
     "block": {
       "type": "SEQ",

@@ -2014,6 +2014,10 @@
           "named": true
         },
         {
+          "type": "ellipsis",
+          "named": true
+        },
+        {
           "type": "instanciation_parameter",
           "named": true
         }
@@ -2894,6 +2898,10 @@
   {
     "type": "dynamic",
     "named": false
+  },
+  {
+    "type": "ellipsis",
+    "named": true
   },
   {
     "type": "else",

@@ -177,7 +177,11 @@ module.exports = grammar({
             ')'
         ),
 
-        _parameter: $ => choice($.declaration_parameter, $.instanciation_parameter),
+        _parameter: $ => choice(
+            $.declaration_parameter,
+            $.instanciation_parameter,
+            $.ellipsis
+        ),
 
         declaration_parameter: $ => seq(repeat($.modifier), $._type, $._identifiers),
 
@@ -186,6 +190,8 @@ module.exports = grammar({
             optional(seq($._identifiers, ':')),
             choice($._expression, $.closure)
         )),
+
+        ellipsis: $ => '...',
 
         block: $ => seq(
             '{',

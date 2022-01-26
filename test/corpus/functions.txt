@@ -95,3 +95,25 @@ my_sorting_algorithm(data, (a, b) => {
         ))
     ))
 )
+
+
+==============================
+Variable-Length argument list
+==============================
+
+void method_with_varargs(int x, ...) {
+    // ...
+}
+
+---
+
+(source_file
+    (function_definition
+        (primitive_type)
+        (identifier)
+        (parameter_list (declaration_parameter (primitive_type) (identifier)) (ellipsis))
+        (block
+            (comment)
+        )
+    )
+)
