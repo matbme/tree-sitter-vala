@@ -87,6 +87,25 @@ int a = int_array[0];
 )
 
 
+===================
+Matrix declaration
+===================
+
+int[,] c = new int[3,4];
+
+---
+
+(source_file
+    (declaration
+        (array_identifier (primitive_type))
+        (identifier)
+        (new_instance
+            (array_identifier (primitive_type) (number) (number))
+        )
+    )
+)
+
+
 =================
 Namespaced array
 =================

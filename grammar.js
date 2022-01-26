@@ -132,7 +132,7 @@ module.exports = grammar({
             prec(3, $.camel_cased_identifier),
             $.array_identifier,
             $.generic_identifier,
-            $.nullable_type,
+            prec(10, $.nullable_type),
             prec(10, $.pointer_type)
         ),
 
@@ -339,8 +339,7 @@ module.exports = grammar({
 
         array_initializer: $ => prec.right(seq(
             '{',
-            $._expression,
-            repeat(seq(',', $._expression)),
+            commaSep(choice($._expression, $.array_initializer)),
             '}'
         )),
 
@@ -392,10 +391,10 @@ module.exports = grammar({
             $.null
         )),
 
-        new_instance: $ => seq(
+        new_instance: $ => prec(-1, seq(
             'new',
-            choice($.function_call, $.chained_function_call)
-        ),
+            choice($.function_call, $.chained_function_call, $.array_identifier)
+        )),
 
         throw_error: $ => prec(7, seq(
             'throw',
@@ -465,6 +464,12 @@ module.exports = grammar({
             '"'
         ),
 
+        array_slice: $ => seq(
+            $._expression,
+            ':',
+            $._expression
+        ),
+
         // FIXME: This breaks constructor definition... for some reason
         // static_cast: $ => prec(12, seq(
         //     '(',
@@ -487,7 +492,13 @@ module.exports = grammar({
         array_identifier: $ => prec(5, seq(
             choice($._expression, $.primitive_type),
             '[',
-            optional($._expression),
+            optional(choice(
+                commaSep1(choice(
+                    $._expression,
+                    $.array_slice
+                )),
+                repeat1(',')
+            )),
             ']'
         )),
 
@@ -542,3 +553,11 @@ module.exports = grammar({
 
     }
 });
+
+function commaSep (rule) {
+  return optional(commaSep1(rule))
+}
+
+function commaSep1 (rule) {
+  return seq(rule, repeat(seq(',', rule)))
+}

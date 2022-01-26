@@ -55,6 +55,10 @@
           "named": true
         },
         {
+          "type": "array_slice",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -131,6 +135,97 @@
   },
   {
     "type": "array_initializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "address_of_identifier",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "array_initializer",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "dynamic_cast",
+          "named": true
+        },
+        {
+          "type": "free_pointer",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indirection_identifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "throw_error",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_slice",
     "named": true,
     "fields": {},
     "children": {
@@ -2437,6 +2532,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "array_identifier",
+          "named": true
+        },
         {
           "type": "chained_function_call",
           "named": true
