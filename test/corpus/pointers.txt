@@ -1,0 +1,60 @@
+=========================
+Pointer type declaration
+=========================
+
+int* i_ptr = &i;
+
+---
+
+(source_file
+    (declaration 
+        (pointer_type (primitive_type)) 
+        (identifier) 
+        (address_of_identifier (identifier))
+    )
+)
+
+
+=======================
+Indirection assignment
+=======================
+
+int j = *i_ptr;
+
+---
+
+(source_file
+    (declaration
+        (primitive_type)
+        (identifier)
+        (indirection_identifier (identifier))
+    )
+)
+
+
+=============
+Free pointer
+=============
+
+delete p;
+
+---
+
+(source_file
+    (free_pointer (identifier))
+)
+
+
+=============================
+Access pointer object member
+=============================
+
+o->method_1();
+o->data_1 = 0;
+
+---
+
+(source_file
+    (function_call (namespaced_identifier (identifier) (identifier)) (parameter_list))
+    (assignment (namespaced_identifier (identifier) (identifier)) (number))
+)

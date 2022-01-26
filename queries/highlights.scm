@@ -5,7 +5,12 @@
 
 (function_definition
   (modifier)* @keyword
-  (identifier) @method
+  type: (_)
+  name: (_) @method
+  (
+    (_)
+    (camel_cased_identifier) @type
+  )
 )
 
 (function_call
@@ -64,16 +69,21 @@
 ";"
 "."
 ","
+"->"
 ] @punctuation.delimiter
 
 ; Operators
 
-[
-  "+"
-  "-"
-  "*"
-  "/"
-] @operator
+(binary_expression
+  (_)
+  [
+    "+"
+    "-"
+ 	"*"
+    "/"
+  ] @operator    
+  (_)
+)
 
 (null) @keyword
 
@@ -233,4 +243,23 @@
 ; Throw error
 
 "throws" @keyword
-"throw" @keyword
+"throw" @exception
+
+; Pointers
+
+(address_of_identifier
+  "&" @symbol
+  (_)*
+)
+
+(pointer_type
+  (_)*
+  "*" @symbol
+)
+
+(indirection_identifier
+  "*" @symbol
+  (_)*
+)
+
+"delete" @keyword

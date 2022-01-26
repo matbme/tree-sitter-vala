@@ -34,8 +34,8 @@ module.exports = grammar({
 
         function_definition: $ => seq(
             repeat($.modifier),
-            $._type,
-            $._identifiers,
+            field('type', $._type),
+            field('name', $._identifiers),
             $.parameter_list,
             optional(seq(
                 'throws', 
@@ -127,17 +127,14 @@ module.exports = grammar({
         ),
 
         _type: $ => choice(
-            $._single_type,
+            prec(3, $.primitive_type),
+            prec(3, $.namespaced_identifier),
+            prec(3, $.camel_cased_identifier),
             $.array_identifier,
             $.generic_identifier,
-            $.nullable_type
+            $.nullable_type,
+            prec(10, $.pointer_type)
         ),
-
-        _single_type: $ => prec(3, choice(
-            $.primitive_type,
-            $.namespaced_identifier,
-            $.camel_cased_identifier
-        )),
 
         primitive_type: $ => choice(
             'bool',
@@ -170,6 +167,11 @@ module.exports = grammar({
             $._type,
             '?'
         ),
+
+        pointer_type: $ => prec.left(seq(
+            $._type,
+            '*'
+        )),
 
         parameter_list: $ => seq(
             '(',
@@ -386,6 +388,7 @@ module.exports = grammar({
             $.throw_error,
             // $.static_cast,
             $.dynamic_cast,
+            $.free_pointer,
             $.null
         )),
 
@@ -443,6 +446,11 @@ module.exports = grammar({
             field('else', $._expression)
         )),
 
+        free_pointer: $ => seq(
+            'delete',
+            $._identifiers
+        ),
+
         escape_sequence: $ => token(prec(1, seq(
             '\\',
             /\w/
@@ -495,6 +503,8 @@ module.exports = grammar({
             $.camel_cased_identifier,
             $.uppercased_identifier,
             $.array_identifier,
+            $.address_of_identifier,
+            $.indirection_identifier
         ),
 
         identifier: $ => /[a-z_]\w*/,
@@ -503,13 +513,23 @@ module.exports = grammar({
 
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
-        namespaced_identifier: $ => prec.left(seq(
+        namespaced_identifier: $ => prec.left(5, seq(
             choice($._single_identifier, $.string_literal),
             repeat1(prec.right(2, seq(
-                '.', 
+                choice('.', '->'), 
                 choice($._single_identifier, $.string_literal),
             )))
         )),
+
+        address_of_identifier: $ => seq(
+            '&',
+            $._identifiers
+        ),
+
+        indirection_identifier: $ => seq(
+            '*',
+            $._identifiers
+        ),
 
         null: $ => 'null',
 

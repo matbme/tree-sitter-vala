@@ -65,12 +65,20 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_type"
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "_identifiers"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_identifiers"
+          }
         },
         {
           "type": "SYMBOL",
@@ -565,8 +573,28 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_single_type"
+          "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "primitive_type"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "namespaced_identifier"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "camel_cased_identifier"
+          }
         },
         {
           "type": "SYMBOL",
@@ -579,29 +607,16 @@
         {
           "type": "SYMBOL",
           "name": "nullable_type"
+        },
+        {
+          "type": "PREC",
+          "value": 10,
+          "content": {
+            "type": "SYMBOL",
+            "name": "pointer_type"
+          }
         }
       ]
-    },
-    "_single_type": {
-      "type": "PREC",
-      "value": 3,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "primitive_type"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "namespaced_identifier"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "camel_cased_identifier"
-          }
-        ]
-      }
     },
     "primitive_type": {
       "type": "CHOICE",
@@ -716,6 +731,23 @@
           "value": "?"
         }
       ]
+    },
+    "pointer_type": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_type"
+          },
+          {
+            "type": "STRING",
+            "value": "*"
+          }
+        ]
+      }
     },
     "parameter_list": {
       "type": "SEQ",
@@ -1750,6 +1782,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "free_pointer"
+          },
+          {
+            "type": "SYMBOL",
             "name": "null"
           }
         ]
@@ -2455,6 +2491,19 @@
         ]
       }
     },
+    "free_pointer": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "delete"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        }
+      ]
+    },
     "escape_sequence": {
       "type": "TOKEN",
       "content": {
@@ -2639,6 +2688,14 @@
         {
           "type": "SYMBOL",
           "name": "array_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "address_of_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "indirection_identifier"
         }
       ]
     },
@@ -2656,7 +2713,7 @@
     },
     "namespaced_identifier": {
       "type": "PREC_LEFT",
-      "value": 0,
+      "value": 5,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2682,8 +2739,17 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "."
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "."
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "->"
+                      }
+                    ]
                   },
                   {
                     "type": "CHOICE",
@@ -2704,6 +2770,32 @@
           }
         ]
       }
+    },
+    "address_of_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "&"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        }
+      ]
+    },
+    "indirection_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        }
+      ]
     },
     "null": {
       "type": "STRING",
