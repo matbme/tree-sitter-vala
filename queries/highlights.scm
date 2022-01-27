@@ -98,6 +98,8 @@
   (camel_cased_identifier) @namespace
 )
 
+"global" @namespace
+
 "using" @include
 
 ; Brackets
@@ -276,3 +278,7 @@
 
 (true) @boolean
 (false) @boolean
+
+; Regex
+
+(regex_literal) @string.regex

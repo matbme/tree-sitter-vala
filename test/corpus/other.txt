@@ -1,0 +1,23 @@
+===================
+Regular expression
+===================
+
+if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.match(email)) {
+    // ...
+}
+
+---
+
+(source_file
+    (if_statement
+        (function_call identifier: (namespaced_identifier (regex_literal
+            pattern: (regex_pattern)
+            flags: (regex_flags)
+        ) (identifier)) (parameter_list
+            (instanciation_parameter (identifier))
+        )) 
+        (block
+            (comment)
+        )
+    )
+)

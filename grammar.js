@@ -384,6 +384,7 @@ module.exports = grammar({
             $.binary_expression,
             $.ternary_expression,
             $.string_literal,
+            $.regex_literal,
             $.function_call,
             $.chained_function_call,
             $.new_instance,
@@ -391,6 +392,7 @@ module.exports = grammar({
             $.static_cast,
             $.dynamic_cast,
             $.ownership_transfer,
+            $.global_access,
             $.free_pointer,
             $.true,
             $.false,
@@ -486,6 +488,31 @@ module.exports = grammar({
             $.number
         )),
 
+        // Borrowed from [tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript)
+        regex_literal: $ => seq(
+            '/',
+            field('pattern', $.regex_pattern),
+            token.immediate('/'),
+            optional(field('flags', $.regex_flags))
+        ),
+
+        regex_pattern: $ => token.immediate(prec(-1,
+            repeat1(choice(
+                seq(
+                    '[',
+                    repeat(choice(
+                        seq('\\', /./), // escaped character
+                        /[^\]\n\\]/       // any character besides ']' or '\n'
+                    )),
+                    ']'
+                ),              // square-bracket-delimited character class
+                seq('\\', /./), // escaped character
+                /[^/\\\[\n]/    // any character besides '[', '\', '/', '\n'
+            ))
+        )),
+
+        regex_flags: $ => token.immediate(/[a-z]+/),
+
         array_slice: $ => seq(
             $._expression,
             ':',
@@ -509,6 +536,12 @@ module.exports = grammar({
             '(',
             'owned',
             ')',
+            $._identifiers
+        ),
+
+        global_access: $ => seq(
+            'global',
+            '::',
             $._identifiers
         ),
 
@@ -553,7 +586,7 @@ module.exports = grammar({
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
         namespaced_identifier: $ => prec.left(5, seq(
-            choice($._single_identifier, $.string_literal, $.this),
+            choice($._single_identifier, $.string_literal, $.regex_literal, $.this),
             repeat1(prec.right(2, seq(
                 choice('.', '->'), 
                 choice($._single_identifier, $.string_literal),
