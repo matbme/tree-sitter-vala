@@ -42,6 +42,16 @@
 
 (primitive_type) @type
 
+"typeof" @keyword
+
+"is" @keyword
+
+(is_type_expression
+  (_)
+  "is" @keyword
+  (_) @type
+)
+
 ; Keywords
 "return" @keyword.return
 "yield" @keyword.return
@@ -238,10 +248,14 @@
 
 ; Casting
 
+(static_cast
+  (_) @type
+)
+
 (dynamic_cast
   (_)
   "as" @keyword
-  (_)
+  (_) @type
 )
 
 ; Throw error

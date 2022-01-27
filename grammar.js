@@ -184,7 +184,7 @@ module.exports = grammar({
             '?'
         ),
 
-        pointer_type: $ => prec.left(seq(
+        pointer_type: $ => prec.left(10, seq(
             $._type,
             '*'
         )),
@@ -401,10 +401,13 @@ module.exports = grammar({
             $._identifiers,
             $.number,
             $.decimal_literal,
+            $.parenthesized_expression,
             $.unary_expression,
             $.binary_expression,
             $.ternary_expression,
             $.string_literal,
+            $.typeof_expression,
+            $.is_type_expression,
             $.regex_literal,
             $.function_call,
             $.chained_function_call,
@@ -422,6 +425,13 @@ module.exports = grammar({
             $.null,
             $.this
         )),
+
+        parenthesized_expression: $ => prec(-2, seq(
+            '(',
+            $._expression,
+            ')'
+        )),
+
 
         new_instance: $ => prec(-1, choice(
             seq(
@@ -514,6 +524,19 @@ module.exports = grammar({
             $.number,
             '.',
             $.number
+        )),
+
+        typeof_expression: $ => seq(
+            'typeof',
+            '(',
+            $._type,
+            ')'
+        ),
+
+        is_type_expression: $ => prec(-1, seq(
+            $._identifiers,
+            'is',
+            $._type
         )),
 
         // Borrowed from [tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript)
@@ -621,15 +644,15 @@ module.exports = grammar({
             )))
         )),
 
-        address_of_identifier: $ => seq(
+        address_of_identifier: $ => prec(10, seq(
             '&',
             $._identifiers
-        ),
+        )),
 
-        indirection_identifier: $ => seq(
+        indirection_identifier: $ => prec(10, seq(
             '*',
             $._identifiers
-        ),
+        )),
 
         true: $ => 'true',
 
