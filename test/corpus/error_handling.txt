@@ -66,7 +66,7 @@ if (something_went_wrong) {
 (source_file
     (if_statement (identifier) (block
         (throw_error (new_instance (function_call
-            (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier))
+            (namespaced_identifier (camel_cased_identifier) (uppercased_identifier))
             (parameter_list
                 (instanciation_parameter (string_literal))
             )

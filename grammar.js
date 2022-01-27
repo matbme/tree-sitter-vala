@@ -673,7 +673,7 @@ module.exports = grammar({
 
         identifier: $ => /[a-z_]\w*/,
 
-        camel_cased_identifier: $ => /[A-Z]\w*/,
+        camel_cased_identifier: $ => /[A-Z]\w*[a-z]/,
 
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 

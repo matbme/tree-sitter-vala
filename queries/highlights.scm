@@ -1,6 +1,11 @@
 ; Constant
 (uppercased_identifier) @constant
 
+; Variable
+
+(identifier) @variable
+(camel_cased_identifier) @variable
+
 ; Methods
 
 (function_definition
@@ -41,6 +46,11 @@
 ; Types
 
 (primitive_type) @type
+
+(nullable_type
+    (_) @type
+    "?" @symbol
+)
 
 "typeof" @keyword
 
@@ -205,10 +215,6 @@
 "case"
 "default"
 ] @conditional
-
-; Variable
-
-(identifier) @variable
 
 ; Try statement
 

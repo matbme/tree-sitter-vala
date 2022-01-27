@@ -45,7 +45,7 @@ private async void do_stuff () {
 (source_file
     (function_definition (modifier) (modifier) (primitive_type) (identifier) (parameter_list
         (declaration_parameter (primitive_type) (identifier))
-        (declaration_parameter (primitive_type) (identifier) (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (camel_cased_identifier)))
+        (declaration_parameter (primitive_type) (identifier) (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (uppercased_identifier)))
     ) (block
         (function_call (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (identifier)) (parameter_list 
             (instanciation_parameter (identifier))

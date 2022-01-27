@@ -3500,7 +3500,7 @@
     },
     "camel_cased_identifier": {
       "type": "PATTERN",
-      "value": "[A-Z]\\w*"
+      "value": "[A-Z]\\w*[a-z]"
     },
     "uppercased_identifier": {
       "type": "PATTERN",
