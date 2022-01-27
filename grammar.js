@@ -63,7 +63,7 @@ module.exports = grammar({
             repeat($.modifier),
             'class',
             choice($._identifiers, $.generic_identifier),
-            optional(seq(':', commaSep1($._identifiers))),
+            optional(seq(':', commaSep1(choice($._identifiers, $.generic_identifier)))),
             $.block
         ),
 
@@ -78,7 +78,7 @@ module.exports = grammar({
             repeat($.modifier),
             'interface',
             choice($._identifiers, $.generic_identifier),
-            optional(seq(':', commaSep1($._identifiers))),
+            optional(seq(':', commaSep1(choice($._identifiers, $.generic_identifier)))),
             $.block
         ),
 
@@ -187,12 +187,20 @@ module.exports = grammar({
             $.ellipsis
         ),
 
-        declaration_parameter: $ => seq(repeat($.modifier), $._type, $._identifiers),
+        declaration_parameter: $ => seq(
+            repeat($.modifier),
+            $._type,
+            $._identifiers,
+            optional(seq(
+                '=',
+                $._expression
+            ))
+        ),
 
         instanciation_parameter: $ => prec(3, seq(
             repeat($.modifier),
             optional(seq($._identifiers, ':')),
-            choice($._expression, $.closure)
+            choice($._expression)
         )),
 
         ellipsis: $ => '...',
@@ -216,14 +224,13 @@ module.exports = grammar({
             $.foreach_statement,
             $.while_statement,
             $.do_while_statement,
-            $.closure
         ),
 
         _expression_statement: $ => seq($._expression, ';'),
 
         return_statement: $ => seq(
             'return',
-            $._expression,
+            optional($._expression),
             ';'
         ),
 
@@ -391,9 +398,11 @@ module.exports = grammar({
             $.throw_error,
             $.static_cast,
             $.dynamic_cast,
+            $.yield_expression,
             $.ownership_transfer,
             $.global_access,
             $.free_pointer,
+            $.closure,
             $.true,
             $.false,
             $.null,
@@ -467,6 +476,11 @@ module.exports = grammar({
             'delete',
             $._identifiers
         ),
+
+        yield_expression: $ => prec.right(seq(
+            'yield',
+            optional($._expression),
+        )),
 
         escape_sequence: $ => token(prec(1, seq(
             '\\',

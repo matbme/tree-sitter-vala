@@ -71,6 +71,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -161,6 +165,10 @@
         {
           "type": "uppercased_identifier",
           "named": true
+        },
+        {
+          "type": "yield_expression",
+          "named": true
         }
       ]
     }
@@ -198,6 +206,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -283,6 +295,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -317,6 +333,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -402,6 +422,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -436,6 +460,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -521,6 +549,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -555,6 +587,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -640,6 +676,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -843,6 +883,10 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -1055,6 +1099,10 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -1331,6 +1379,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -1425,6 +1477,10 @@
         {
           "type": "uppercased_identifier",
           "named": true
+        },
+        {
+          "type": "yield_expression",
+          "named": true
         }
       ]
     }
@@ -1446,11 +1502,47 @@
           "named": true
         },
         {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
           "type": "camel_cased_identifier",
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
+          "named": true
+        },
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "dynamic_cast",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "free_pointer",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "generic_identifier",
+          "named": true
+        },
+        {
+          "type": "global_access",
           "named": true
         },
         {
@@ -1470,7 +1562,23 @@
           "named": true
         },
         {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
           "type": "nullable_type",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "ownership_transfer",
           "named": true
         },
         {
@@ -1482,7 +1590,43 @@
           "named": true
         },
         {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "static_cast",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "this",
+          "named": true
+        },
+        {
+          "type": "throw_error",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -1655,6 +1799,10 @@
         {
           "type": "while_statement",
           "named": true
+        },
+        {
+          "type": "yield_expression",
+          "named": true
         }
       ]
     }
@@ -1685,6 +1833,10 @@
         },
         {
           "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -1789,6 +1941,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -2003,6 +2159,10 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -2225,6 +2385,10 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -2718,6 +2882,10 @@
         {
           "type": "while_statement",
           "named": true
+        },
+        {
+          "type": "yield_expression",
+          "named": true
         }
       ]
     }
@@ -2883,6 +3051,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -3258,7 +3430,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "address_of_identifier",
@@ -3278,6 +3450,10 @@
         },
         {
           "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -3366,6 +3542,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -3570,6 +3750,10 @@
         {
           "type": "while_statement",
           "named": true
+        },
+        {
+          "type": "yield_expression",
+          "named": true
         }
       ]
     }
@@ -3634,6 +3818,10 @@
           },
           {
             "type": "chained_function_call",
+            "named": true
+          },
+          {
+            "type": "closure",
             "named": true
           },
           {
@@ -3722,6 +3910,10 @@
           },
           {
             "type": "uppercased_identifier",
+            "named": true
+          },
+          {
+            "type": "yield_expression",
             "named": true
           }
         ]
@@ -3877,6 +4069,10 @@
             "named": true
           },
           {
+            "type": "closure",
+            "named": true
+          },
+          {
             "type": "decimal_literal",
             "named": true
           },
@@ -3962,6 +4158,10 @@
           },
           {
             "type": "uppercased_identifier",
+            "named": true
+          },
+          {
+            "type": "yield_expression",
             "named": true
           }
         ]
@@ -3991,6 +4191,10 @@
             "named": true
           },
           {
+            "type": "closure",
+            "named": true
+          },
+          {
             "type": "decimal_literal",
             "named": true
           },
@@ -4076,6 +4280,10 @@
           },
           {
             "type": "uppercased_identifier",
+            "named": true
+          },
+          {
+            "type": "yield_expression",
             "named": true
           }
         ]
@@ -4105,6 +4313,10 @@
             "named": true
           },
           {
+            "type": "closure",
+            "named": true
+          },
+          {
             "type": "decimal_literal",
             "named": true
           },
@@ -4190,6 +4402,10 @@
           },
           {
             "type": "uppercased_identifier",
+            "named": true
+          },
+          {
+            "type": "yield_expression",
             "named": true
           }
         ]
@@ -4222,6 +4438,10 @@
         },
         {
           "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
           "named": true
         },
         {
@@ -4310,6 +4530,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -4363,6 +4587,10 @@
           "named": true
         },
         {
+          "type": "closure",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -4448,6 +4676,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -4658,6 +4890,137 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "yield_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "address_of_identifier",
+          "named": true
+        },
+        {
+          "type": "array_identifier",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "camel_cased_identifier",
+          "named": true
+        },
+        {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "closure",
+          "named": true
+        },
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "dynamic_cast",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "free_pointer",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "global_access",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indirection_identifier",
+          "named": true
+        },
+        {
+          "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "ownership_transfer",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "static_cast",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "this",
+          "named": true
+        },
+        {
+          "type": "throw_error",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]
@@ -5085,6 +5448,10 @@
   },
   {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "yield",
     "named": false
   },
   {

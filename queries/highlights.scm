@@ -44,6 +44,7 @@
 
 ; Keywords
 "return" @keyword.return
+"yield" @keyword.return
 "break" @keyword
 
 ; Other

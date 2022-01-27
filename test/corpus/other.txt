@@ -21,3 +21,59 @@ if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.match(email)) {
         )
     )
 )
+
+
+=============
+Async method
+=============
+
+public async void nap (uint interval, int priority = GLib.Priority.DEFAULT) {
+  GLib.Timeout.add (interval, () => {
+      nap.callback ();
+      return false;
+    }, priority);
+  yield;
+}
+
+private async void do_stuff () {
+  yield nap (1000);
+}
+
+
+---
+
+(source_file
+    (function_definition (modifier) (modifier) (primitive_type) (identifier) (parameter_list
+        (declaration_parameter (primitive_type) (identifier))
+        (declaration_parameter (primitive_type) (identifier) (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (camel_cased_identifier)))
+    ) (block
+        (function_call (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (identifier)) (parameter_list 
+            (instanciation_parameter (identifier))
+            (instanciation_parameter (closure (block
+                (function_call (namespaced_identifier (identifier) (identifier)) (parameter_list))
+                (return_statement (false))
+            )))
+            (instanciation_parameter (identifier))
+        ))
+        (yield_expression)
+    ))
+    (function_definition (modifier) (modifier) (primitive_type) (identifier) (parameter_list) (block
+        (yield_expression (function_call (identifier) (parameter_list (instanciation_parameter (number)))))
+    ))
+)
+
+
+=================
+Yield assignment
+=================
+
+var status = yield fetch_webpage(url, out text);
+
+---
+
+(source_file
+    (declaration (identifier) (yield_expression (function_call (identifier) (parameter_list
+        (instanciation_parameter (identifier))
+        (instanciation_parameter (modifier) (identifier))
+    ))))
+)
