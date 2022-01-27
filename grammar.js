@@ -13,7 +13,10 @@ module.exports = grammar({
         [$.chained_function_call, $._identifiers, $.generic_identifier],
         [$._type, $._single_identifier],
         [$.static_cast, $.dynamic_cast],
-        [$._type, $._identifiers]
+        [$._type, $._identifiers],
+        [$.new_instance, $._identifiers, $.namespaced_identifier],
+        [$.new_instance, $.namespaced_identifier],
+        [$.chained_function_call, $.new_instance, $.namespaced_identifier]
     ],
 
     word: $ => $.identifier,
@@ -376,6 +379,7 @@ module.exports = grammar({
         _expression: $ => prec(1, choice(
             $._identifiers,
             $.number,
+            $.decimal_literal,
             $.unary_expression,
             $.binary_expression,
             $.ternary_expression,
@@ -386,13 +390,26 @@ module.exports = grammar({
             $.throw_error,
             $.static_cast,
             $.dynamic_cast,
+            $.ownership_transfer,
             $.free_pointer,
-            $.null
+            $.true,
+            $.false,
+            $.null,
+            $.this
         )),
 
-        new_instance: $ => prec(-1, seq(
-            'new',
-            choice($.function_call, $.chained_function_call, $.array_identifier)
+        new_instance: $ => prec(-1, choice(
+            seq(
+                'new',
+                choice($.function_call, $.chained_function_call, $.array_identifier)
+            ),
+            seq(
+                $._single_identifier,
+                repeat(seq('.', $._single_identifier)),
+                '.',
+                'new',
+                $.parameter_list
+            )
         )),
 
         throw_error: $ => prec(7, seq(
@@ -463,6 +480,12 @@ module.exports = grammar({
             '"'
         ),
 
+        decimal_literal: $ => prec(12, seq(
+            $.number,
+            '.',
+            $.number
+        )),
+
         array_slice: $ => seq(
             $._expression,
             ':',
@@ -481,6 +504,13 @@ module.exports = grammar({
             'as',
             $._type
         )),
+
+        ownership_transfer: $ => seq(
+            '(',
+            'owned',
+            ')',
+            $._identifiers
+        ),
 
         _identifiers: $ => choice(
             $._single_identifier,
@@ -523,7 +553,7 @@ module.exports = grammar({
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
         namespaced_identifier: $ => prec.left(5, seq(
-            choice($._single_identifier, $.string_literal),
+            choice($._single_identifier, $.string_literal, $.this),
             repeat1(prec.right(2, seq(
                 choice('.', '->'), 
                 choice($._single_identifier, $.string_literal),
@@ -540,7 +570,13 @@ module.exports = grammar({
             $._identifiers
         ),
 
+        true: $ => 'true',
+
+        false: $ => 'false',
+
         null: $ => 'null',
+
+        this: $ => 'this',
 
         number: $ => /\d+/,
 

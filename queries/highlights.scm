@@ -154,6 +154,7 @@
 ; Class properties
 
 (property_parameter) @keyword
+(this) @keyword
 
 ; Strings and escape sequences
 
@@ -263,3 +264,15 @@
 )
 
 "delete" @keyword
+
+; Ownership
+
+(ownership_transfer
+  "owned" @keyword
+  (_)
+)
+
+; Booleans
+
+(true) @boolean
+(false) @boolean
