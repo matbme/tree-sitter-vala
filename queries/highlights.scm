@@ -174,6 +174,14 @@
 (string_literal) @string
 (escape_sequence) @string.escape
 
+(string_template
+  "@" @symbol
+) @string
+
+(string_template_variable) @variable
+
+(string_template_expression) @variable
+
 ; Assignment and declaration
 
 "new" @keyword
@@ -302,3 +310,16 @@
 
 "requires" @keyword
 "ensures" @keyword
+
+; Code attribute
+
+(code_attribute
+  "[" @attribute
+  name: (camel_cased_identifier) @attribute
+  (
+    "(" @attribute
+    (_)+
+    ")" @attribute
+  )?
+  "]" @attribute
+)

@@ -34,7 +34,8 @@ module.exports = grammar({
             $.struct_declaration,
             $.interface_declaration,
             $.enum_declaration,
-            $.gobject_contruct
+            $.gobject_contruct,
+            $.code_attribute
         ),
 
         function_definition: $ => seq(
@@ -240,6 +241,21 @@ module.exports = grammar({
             $.do_while_statement,
         ),
 
+        code_attribute: $ => seq(
+            '[',
+            field('name', $.camel_cased_identifier),
+            optional(seq(
+                '(',
+                commaSep1(seq(
+                    field('param', $._identifiers),
+                    '=',
+                    field('value', $._expression),
+                )),
+                ')'
+            )),
+            ']'
+        ),
+
         _expression_statement: $ => seq($._expression, ';'),
 
         return_statement: $ => seq(
@@ -406,6 +422,7 @@ module.exports = grammar({
             $.binary_expression,
             $.ternary_expression,
             $.string_literal,
+            $.string_template,
             $.typeof_expression,
             $.is_type_expression,
             $.regex_literal,
@@ -518,6 +535,30 @@ module.exports = grammar({
                 $.escape_sequence
             )),
             '"'
+        ),
+
+        string_template: $ => seq(
+            '@',
+            '"',
+            repeat(choice(
+                token.immediate(prec(1, /[^\\"\n$]+/)),
+                $.escape_sequence,
+                $.string_template_variable,
+                $.string_template_expression
+            )),
+            '"'
+        ),
+
+        string_template_variable: $ => seq(
+            '$',
+            $._identifiers
+        ),
+
+        string_template_expression: $ => seq(
+            '$',
+            '(',
+            $._expression,
+            ')'
         ),
 
         decimal_literal: $ => prec(12, seq(

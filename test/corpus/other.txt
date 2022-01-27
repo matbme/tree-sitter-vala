@@ -77,3 +77,38 @@ var status = yield fetch_webpage(url, out text);
         (instanciation_parameter (modifier) (identifier))
     ))))
 )
+
+
+===============
+Code attribute
+===============
+
+[CCode(cname = "FOO", cheader_filename = "blah.h")]
+
+---
+
+(source_file
+    (code_attribute (camel_cased_identifier)
+        (identifier) (string_literal)
+        (identifier) (string_literal)
+    )
+)
+
+
+================
+String template
+================
+
+string s = @"$a * $b = $(a * b)";
+
+---
+
+(source_file
+    (declaration (primitive_type) (identifier)
+        (string_template
+            (string_template_variable (identifier))
+            (string_template_variable (identifier))
+            (string_template_expression (binary_expression (identifier) (identifier)))
+        )
+    )
+)
