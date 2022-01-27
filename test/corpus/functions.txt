@@ -117,3 +117,31 @@ void method_with_varargs(int x, ...) {
         )
     )
 )
+
+
+=====================
+Contract programming
+=====================
+
+double method_name(int x, double d)
+        requires (x > 0 && x < 10)
+        requires (d >= 0.0 && d <= 1.0)
+        ensures (result >= 0.0 && result <= 10.0)
+{
+    return d * x;
+}
+
+---
+
+(source_file
+    (function_definition (primitive_type) (identifier) (parameter_list
+        (declaration_parameter (primitive_type) (identifier))
+        (declaration_parameter (primitive_type) (identifier))
+    )
+    (requires_declarator (binary_expression (binary_expression (identifier) (number)) (binary_expression (identifier) (number))))
+    (requires_declarator (binary_expression (binary_expression (identifier) (decimal_literal (number) (number))) (binary_expression (identifier) (decimal_literal (number) (number)))))
+    (ensures_declarator (binary_expression (binary_expression (identifier) (decimal_literal (number) (number))) (binary_expression (identifier) (decimal_literal (number) (number)))))
+    (block
+        (return_statement (binary_expression (identifier) (identifier)))
+    ))
+)

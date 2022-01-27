@@ -45,7 +45,7 @@ void my_method() throws IOError {
         (primitive_type) 
         (identifier) 
         (parameter_list) 
-        (camel_cased_identifier) 
+        (throws_declarator (camel_cased_identifier)) 
         (block
             (comment)
         )

@@ -283,3 +283,8 @@
 ; Regex
 
 (regex_literal) @string.regex
+
+; Contract programming
+
+"requires" @keyword
+"ensures" @keyword

@@ -42,11 +42,27 @@ module.exports = grammar({
             field('type', $._type),
             field('name', $._identifiers),
             $.parameter_list,
-            optional(seq(
-                'throws', 
-                commaSep1($.camel_cased_identifier),
-            )),
+            repeat(choice($.throws_declarator, $.requires_declarator, $.ensures_declarator)),
             choice($.block, ';')
+        ),
+
+        throws_declarator: $ => seq(
+            'throws', 
+            commaSep1($.camel_cased_identifier)
+        ),
+
+        requires_declarator: $ => seq(
+            'requires',
+            '(',
+            $._expression,
+            ')'
+        ),
+
+        ensures_declarator: $ => seq(
+            'ensures',
+            '(',
+            $._expression,
+            ')'
         ),
 
         function_call: $ => prec(3, seq(
@@ -106,7 +122,6 @@ module.exports = grammar({
             'abstract',
             'const',
             'dynamic',
-            'ensures',
             'extern',
             'inline',
             'internal',
@@ -114,7 +129,6 @@ module.exports = grammar({
             'private',
             'protected',
             'public',
-            'requires',
             'signal',
             'static',
             'virtual',
@@ -436,11 +450,11 @@ module.exports = grammar({
         )),
 
         binary_expression: $ => choice(
-            prec.left(4, seq($._expression, '*', $._expression)),
-            prec.left(4, seq($._expression, '/', $._expression)),
-            prec.left(4, seq($._expression, '+', $._expression)),
-            prec.left(4, seq($._expression, '-', $._expression)),
-            prec.left(4, seq($._expression, '%', $._expression)),
+            prec.left(5, seq($._expression, '*', $._expression)),
+            prec.left(5, seq($._expression, '/', $._expression)),
+            prec.left(5, seq($._expression, '+', $._expression)),
+            prec.left(5, seq($._expression, '-', $._expression)),
+            prec.left(5, seq($._expression, '%', $._expression)),
             prec.left(4, seq($._expression, '<', $._expression)),
             prec.left(4, seq($._expression, '<=', $._expression)),
             prec.left(4, seq($._expression, '>', $._expression)),
@@ -452,12 +466,12 @@ module.exports = grammar({
             prec.left(4, seq($._expression, '*=', $._expression)),
             prec.left(4, seq($._expression, '/=', $._expression)),
             prec.left(4, seq($._expression, '%=', $._expression)),
-            prec.left(4, seq($._expression, '&&', $._expression)),
-            prec.left(4, seq($._expression, '||', $._expression)),
-            prec.left(4, seq($._expression, '&', $._expression)),
-            prec.left(4, seq($._expression, '|', $._expression)),
-            prec.left(4, seq($._expression, '^', $._expression)),
-            prec.left(4, seq($._expression, '~', $._expression)),
+            prec.left(3, seq($._expression, '&&', $._expression)),
+            prec.left(3, seq($._expression, '||', $._expression)),
+            prec.left(5, seq($._expression, '&', $._expression)),
+            prec.left(5, seq($._expression, '|', $._expression)),
+            prec.left(5, seq($._expression, '^', $._expression)),
+            prec.left(5, seq($._expression, '~', $._expression)),
             prec.left(4, seq($._expression, '|=', $._expression)),
             prec.left(4, seq($._expression, '&=', $._expression)),
             prec.left(4, seq($._expression, '^=', $._expression)),
