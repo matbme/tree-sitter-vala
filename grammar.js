@@ -32,6 +32,7 @@ module.exports = grammar({
             $._statement,
             $.class_declaration,
             $.class_constructor_definition,
+            $.class_destructor,
             $.struct_declaration,
             $.interface_declaration,
             $.enum_declaration,
@@ -87,6 +88,13 @@ module.exports = grammar({
 
         class_constructor_definition: $ => seq(
             repeat($.modifier),
+            $._identifiers,
+            $.parameter_list,
+            $.block
+        ),
+
+        class_destructor: $ => seq(
+            '~',
             $._identifiers,
             $.parameter_list,
             $.block
@@ -325,7 +333,7 @@ module.exports = grammar({
             'try',
             $.block,
             'catch',
-            $.parameter_list,
+            field('exception', $.parameter_list),
             $.block
         ),
 
@@ -429,6 +437,7 @@ module.exports = grammar({
             $._identifiers,
             $.number,
             $.decimal_literal,
+            $.char_literal,
             $.parenthesized_expression,
             $.unary_expression,
             $.binary_expression,
@@ -592,6 +601,15 @@ module.exports = grammar({
             $.number
         )),
 
+        char_literal: $ => seq(
+            '\'',
+            choice(
+                $.escape_sequence,
+                token.immediate(/[^\n']/)
+            ),
+            '\''
+        ),
+
         typeof_expression: $ => seq(
             'typeof',
             '(',
@@ -715,10 +733,10 @@ module.exports = grammar({
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
         namespaced_identifier: $ => prec.left(5, seq(
-            choice($._single_identifier, $.string_literal, $.regex_literal, $.this, $.primitive_type),
+            field('left', choice($._single_identifier, $.string_literal, $.regex_literal, $.this, $.primitive_type)),
             repeat1(prec.right(2, seq(
                 choice('.', '->'), 
-                choice($._single_identifier, $.string_literal),
+                field('right', choice($._single_identifier, $.string_literal)),
             )))
         )),
 

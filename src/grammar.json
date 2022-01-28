@@ -38,6 +38,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "class_destructor"
+        },
+        {
+          "type": "SYMBOL",
           "name": "struct_declaration"
         },
         {
@@ -347,6 +351,27 @@
             "type": "SYMBOL",
             "name": "modifier"
           }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifiers"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "class_destructor": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "~"
         },
         {
           "type": "SYMBOL",
@@ -1500,8 +1525,12 @@
           "value": "catch"
         },
         {
-          "type": "SYMBOL",
-          "name": "parameter_list"
+          "type": "FIELD",
+          "name": "exception",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parameter_list"
+          }
         },
         {
           "type": "SYMBOL",
@@ -2047,6 +2076,10 @@
           {
             "type": "SYMBOL",
             "name": "decimal_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "char_literal"
           },
           {
             "type": "SYMBOL",
@@ -3155,6 +3188,35 @@
         ]
       }
     },
+    "char_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "'"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "escape_sequence"
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\\n']"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "'"
+        }
+      ]
+    },
     "typeof_expression": {
       "type": "SEQ",
       "members": [
@@ -3653,29 +3715,33 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_single_identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "string_literal"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "regex_literal"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "this"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "primitive_type"
-              }
-            ]
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_single_identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "string_literal"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "regex_literal"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "this"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "primitive_type"
+                }
+              ]
+            }
           },
           {
             "type": "REPEAT1",
@@ -3699,17 +3765,21 @@
                     ]
                   },
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_single_identifier"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "string_literal"
-                      }
-                    ]
+                    "type": "FIELD",
+                    "name": "right",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "_single_identifier"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "string_literal"
+                        }
+                      ]
+                    }
                   }
                 ]
               }
