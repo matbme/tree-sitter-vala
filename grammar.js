@@ -16,7 +16,8 @@ module.exports = grammar({
         [$._type, $._identifiers],
         [$.new_instance, $._identifiers, $.namespaced_identifier],
         [$.new_instance, $.namespaced_identifier],
-        [$.chained_function_call, $.new_instance, $.namespaced_identifier]
+        [$.chained_function_call, $.new_instance, $.namespaced_identifier],
+        [$.block, $.array_initializer]
     ],
 
     word: $ => $.identifier,
@@ -67,7 +68,7 @@ module.exports = grammar({
         ),
 
         function_call: $ => prec(3, seq(
-            field('identifier', choice($._identifiers, $.generic_identifier)),
+            field('identifier', choice($._identifiers, $.primitive_type)),
             $.parameter_list
         )),
 
@@ -79,8 +80,8 @@ module.exports = grammar({
         class_declaration: $ => seq(
             repeat($.modifier),
             'class',
-            choice($._identifiers, $.generic_identifier),
-            optional(seq(':', commaSep1(choice($._identifiers, $.generic_identifier)))),
+            choice($._identifiers),
+            optional(seq(':', commaSep1($._identifiers))),
             $.block
         ),
 
@@ -94,8 +95,8 @@ module.exports = grammar({
         interface_declaration: $ => seq(
             repeat($.modifier),
             'interface',
-            choice($._identifiers, $.generic_identifier),
-            optional(seq(':', commaSep1(choice($._identifiers, $.generic_identifier)))),
+            choice($._identifiers),
+            optional(seq(':', commaSep1($._identifiers))),
             $.block
         ),
 
@@ -105,6 +106,16 @@ module.exports = grammar({
             $._identifiers,
             $.block
         ),
+
+        struct_initializer: $ => prec(-1, seq(
+            $._identifiers,
+            $.parameter_list,
+            alias(seq(
+                '{',
+                commaSep(seq($._identifiers, '=', $._expression)),
+                '}',
+            ), $.block)
+        )),
 
         enum_declaration: $ => seq(
             repeat($.modifier),
@@ -147,6 +158,7 @@ module.exports = grammar({
             $.primitive_type,
             $.namespaced_identifier,
             $.camel_cased_identifier,
+            $.uppercased_identifier,
             $.array_identifier,
             $.generic_identifier,
             prec(10, $.nullable_type),
@@ -370,7 +382,7 @@ module.exports = grammar({
             field('type_name', choice($._type, 'var')),
             $._identifiers,
             choice(
-                seq('=', choice($._expression, $.array_initializer), ';'),
+                seq('=', choice($._expression, $.array_initializer, $.struct_initializer), ';'),
                 seq('{', $.gobject_property_acces, '}'),
                 ';'
             )
@@ -413,7 +425,7 @@ module.exports = grammar({
             ';'
         ),
 
-        _expression: $ => prec(1, choice(
+        _expression: $ => prec(-2, choice(
             $._identifiers,
             $.number,
             $.decimal_literal,
@@ -422,10 +434,12 @@ module.exports = grammar({
             $.binary_expression,
             $.ternary_expression,
             $.string_literal,
+            $.translation_string,
             $.string_template,
             $.typeof_expression,
             $.is_type_expression,
             $.regex_literal,
+            $.array_initializer,
             $.function_call,
             $.chained_function_call,
             $.new_instance,
@@ -440,26 +454,30 @@ module.exports = grammar({
             $.true,
             $.false,
             $.null,
-            $.this
+            $.this,
+            $.underscore
         )),
 
-        parenthesized_expression: $ => prec(-2, seq(
+        parenthesized_expression: $ => seq(
             '(',
             $._expression,
             ')'
-        )),
-
+        ),
 
         new_instance: $ => prec(-1, choice(
             seq(
                 'new',
-                choice($.function_call, $.chained_function_call, $.array_identifier)
+                choice(
+                    $.function_call,
+                    $.chained_function_call,
+                    $.array_identifier,
+                    alias($.struct_initializer, $.object_initializer)
+                )
             ),
             seq(
                 $._single_identifier,
                 repeat(seq('.', $._single_identifier)),
-                '.',
-                'new',
+                token.immediate('.new'),
                 $.parameter_list
             )
         )),
@@ -535,6 +553,13 @@ module.exports = grammar({
                 $.escape_sequence
             )),
             '"'
+        ),
+
+        translation_string: $ => seq(
+            '_',
+            token.immediate('('),
+            $.string_literal,
+            ')'
         ),
 
         string_template: $ => seq(
@@ -640,6 +665,8 @@ module.exports = grammar({
         _identifiers: $ => choice(
             $._single_identifier,
             $.namespaced_identifier,
+            $.ambiguous_identifier,
+            prec(-1, $.underscore)
         ),
 
         array_identifier: $ => prec(5, seq(
@@ -667,8 +694,18 @@ module.exports = grammar({
             $.camel_cased_identifier,
             $.uppercased_identifier,
             $.array_identifier,
+            $.generic_identifier,
             $.address_of_identifier,
             $.indirection_identifier
+        ),
+
+        ambiguous_identifier: $ => seq(
+            '@',
+            choice(
+                $.identifier,
+                $.camel_cased_identifier,
+                $.uppercased_identifier
+            ),
         ),
 
         identifier: $ => /[a-z_]\w*/,
@@ -678,7 +715,7 @@ module.exports = grammar({
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
         namespaced_identifier: $ => prec.left(5, seq(
-            choice($._single_identifier, $.string_literal, $.regex_literal, $.this),
+            choice($._single_identifier, $.string_literal, $.regex_literal, $.this, $.primitive_type),
             repeat1(prec.right(2, seq(
                 choice('.', '->'), 
                 choice($._single_identifier, $.string_literal),
@@ -702,6 +739,8 @@ module.exports = grammar({
         null: $ => 'null',
 
         this: $ => 'this',
+
+        underscore: $ => '_',
 
         number: $ => /\d+/,
 
