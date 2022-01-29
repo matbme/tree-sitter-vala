@@ -662,9 +662,9 @@ module.exports = grammar({
         )),
 
         dynamic_cast: $ => prec(12, seq(
-            $._expression,
+            field('value', $._expression),
             'as',
-            $._type
+            field('type', $._type),
         )),
 
         ownership_transfer: $ => seq(
@@ -675,8 +675,7 @@ module.exports = grammar({
         ),
 
         global_access: $ => seq(
-            'global',
-            '::',
+            token('global::'),
             $._identifiers
         ),
 
