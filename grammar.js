@@ -306,7 +306,7 @@ module.exports = grammar({
         switch_statement: $ => seq(
             'switch',
             '(',
-            $._identifiers,
+            $._expression,
             ')',
             $.switch_block
         ),
@@ -403,16 +403,22 @@ module.exports = grammar({
             '}'
         )),
 
-       property_parameter: $ => choice(
+        property_parameter: $ => choice(
             'get',
             'set',
             'construct'
         ),
 
+        property_default_value: $ => seq(
+            'default',
+            '=',
+            $._expression
+        ),
+
         gobject_property_acces: $ => repeat1(
             seq(
                 optional($.modifier),
-                $.property_parameter,
+                choice($.property_parameter, $.property_default_value),
                 choice($.block, ';')
             )
         ),
@@ -594,17 +600,16 @@ module.exports = grammar({
             '"'
         ),
 
-        string_template_variable: $ => seq(
+        string_template_variable: $ => prec.right(seq(
             '$',
             $._identifiers
-        ),
+        )),
 
-        string_template_expression: $ => seq(
-            '$',
-            '(',
+        string_template_expression: $ => prec.right(seq(
+            '$(',
             $._expression,
             ')'
-        ),
+        )),
 
         decimal_literal: $ => prec(12, seq(
             $.number,
@@ -713,7 +718,7 @@ module.exports = grammar({
         generic_identifier: $ => prec.dynamic(10, seq(
             $._single_identifier,
             '<',
-            choice($._single_identifier, $._type),
+            commaSep1(choice($._single_identifier, $._type)),
             '>'
         )),
 

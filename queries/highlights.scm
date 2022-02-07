@@ -202,7 +202,7 @@
 )
 
 (class_constructor_definition
-  [
+  name: [
     (_)
     (namespaced_identifier (_) @constructor .)
   ] @constructor
