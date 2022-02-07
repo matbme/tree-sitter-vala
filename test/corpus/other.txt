@@ -116,3 +116,21 @@ string s = @"$a * $b = $(a * b)";
         )
     )
 )
+
+
+=========
+Verbatim
+=========
+
+string GROUP_COLOR_STYLE = """
+    .group-color {
+        background-color: %s;
+        border-radius: 50%
+    }
+""";
+
+---
+
+(source_file
+    (declaration (primitive_type) (uppercased_identifier) (verbatim))
+)

@@ -242,6 +242,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -406,6 +410,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -576,6 +584,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -743,6 +755,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -907,6 +923,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -1158,6 +1178,10 @@
         },
         {
           "type": "using",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -1425,6 +1449,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "while_statement",
           "named": true
         },
@@ -1496,41 +1524,60 @@
   {
     "type": "class_constructor_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "address_of_identifier",
+            "named": true
+          },
+          {
+            "type": "ambiguous_identifier",
+            "named": true
+          },
+          {
+            "type": "array_identifier",
+            "named": true
+          },
+          {
+            "type": "camel_cased_identifier",
+            "named": true
+          },
+          {
+            "type": "generic_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirection_identifier",
+            "named": true
+          },
+          {
+            "type": "namespaced_identifier",
+            "named": true
+          },
+          {
+            "type": "underscore",
+            "named": true
+          },
+          {
+            "type": "uppercased_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "address_of_identifier",
-          "named": true
-        },
-        {
-          "type": "ambiguous_identifier",
-          "named": true
-        },
-        {
-          "type": "array_identifier",
-          "named": true
-        },
-        {
           "type": "block",
-          "named": true
-        },
-        {
-          "type": "camel_cased_identifier",
-          "named": true
-        },
-        {
-          "type": "generic_identifier",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "indirection_identifier",
           "named": true
         },
         {
@@ -1538,19 +1585,7 @@
           "named": true
         },
         {
-          "type": "namespaced_identifier",
-          "named": true
-        },
-        {
           "type": "parameter_list",
-          "named": true
-        },
-        {
-          "type": "underscore",
-          "named": true
-        },
-        {
-          "type": "uppercased_identifier",
           "named": true
         }
       ]
@@ -1946,6 +1981,10 @@
             "named": true
           },
           {
+            "type": "verbatim",
+            "named": true
+          },
+          {
             "type": "yield_expression",
             "named": true
           }
@@ -2184,6 +2223,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -2364,6 +2407,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -2578,6 +2625,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "while_statement",
           "named": true
         },
@@ -2787,6 +2838,10 @@
             "named": true
           },
           {
+            "type": "verbatim",
+            "named": true
+          },
+          {
             "type": "yield_expression",
             "named": true
           }
@@ -2952,6 +3007,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -3218,6 +3277,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -3492,6 +3555,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -4091,6 +4158,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "while_statement",
           "named": true
         },
@@ -4317,6 +4388,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -4535,6 +4610,10 @@
           },
           {
             "type": "indirection_identifier",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -4991,6 +5070,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -5232,6 +5315,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -5396,6 +5483,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -5650,6 +5741,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "while_statement",
           "named": true
         },
@@ -5859,6 +5954,10 @@
             "named": true
           },
           {
+            "type": "verbatim",
+            "named": true
+          },
+          {
             "type": "yield_expression",
             "named": true
           }
@@ -6062,6 +6161,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -6471,6 +6574,10 @@
             "named": true
           },
           {
+            "type": "verbatim",
+            "named": true
+          },
+          {
             "type": "yield_expression",
             "named": true
           }
@@ -6633,6 +6740,10 @@
             "named": true
           },
           {
+            "type": "verbatim",
+            "named": true
+          },
+          {
             "type": "yield_expression",
             "named": true
           }
@@ -6792,6 +6903,10 @@
           },
           {
             "type": "uppercased_identifier",
+            "named": true
+          },
+          {
+            "type": "verbatim",
             "named": true
           },
           {
@@ -6960,6 +7075,10 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
           "named": true
         },
         {
@@ -7229,6 +7348,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -7286,6 +7409,21 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "verbatim",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
           "named": true
         }
       ]
@@ -7496,6 +7634,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "while_statement",
           "named": true
         },
@@ -7667,6 +7809,10 @@
           "named": true
         },
         {
+          "type": "verbatim",
+          "named": true
+        },
+        {
           "type": "yield_expression",
           "named": true
         }
@@ -7683,6 +7829,10 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\"\"\"",
     "named": false
   },
   {

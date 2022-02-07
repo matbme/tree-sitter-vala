@@ -353,8 +353,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_identifiers"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_identifiers"
+          }
         },
         {
           "type": "SYMBOL",
@@ -1624,6 +1628,21 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "unowned"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
               "name": "_type"
             },
@@ -1647,7 +1666,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_identifiers"
+          "name": "_expression"
         },
         {
           "type": "STRING",
@@ -2100,6 +2119,10 @@
           {
             "type": "SYMBOL",
             "name": "string_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "verbatim"
           },
           {
             "type": "SYMBOL",
@@ -3061,6 +3084,42 @@
         }
       ]
     },
+    "verbatim": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\"\"\""
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 1,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[^\\\\\"\"\"]+"
+                  }
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "escape_sequence"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\"\"\""
+        }
+      ]
+    },
     "translation_string": {
       "type": "SEQ",
       "members": [
@@ -3362,7 +3421,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^/\\\\\\[\\n]"
+                "value": "[^\\/\\\\\\[\\n]"
               }
             ]
           }
@@ -3746,6 +3805,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "primitive_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "parenthesized_expression"
                 }
               ]
             }
@@ -3863,8 +3926,21 @@
             "value": "\\/\\/.+"
           },
           {
-            "type": "PATTERN",
-            "value": "\\/\\*(.|\\n)+\\*\\/"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "/*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              }
+            ]
           }
         ]
       }

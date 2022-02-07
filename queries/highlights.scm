@@ -225,6 +225,7 @@
 ; Strings and escape sequences
 
 (string_literal) @string
+(verbatim) @string
 (escape_sequence) @string.escape
 
 (string_template

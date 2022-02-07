@@ -88,7 +88,7 @@ module.exports = grammar({
 
         class_constructor_definition: $ => seq(
             repeat($.modifier),
-            $._identifiers,
+            field('name', $._identifiers),
             $.parameter_list,
             $.block
         ),
@@ -351,10 +351,11 @@ module.exports = grammar({
         foreach_statement: $ => seq(
             'foreach',
             '(',
+            optional(token('unowned')),
             choice($._type, 'var'),
             field('loop_item', $._identifiers),
             'in',
-            $._identifiers,
+            $._expression,
             ')',
             choice($.block, $._statement)
         ),
@@ -443,6 +444,7 @@ module.exports = grammar({
             $.binary_expression,
             $.ternary_expression,
             $.string_literal,
+            $.verbatim,
             $.translation_string,
             $.string_template,
             $.typeof_expression,
@@ -562,6 +564,15 @@ module.exports = grammar({
                 $.escape_sequence
             )),
             '"'
+        ),
+
+        verbatim: $ => seq(
+            '"""',
+            repeat(choice(
+                token.immediate(prec(1, /[^\\"""]+/)),
+                $.escape_sequence
+            )),
+            '"""'
         ),
 
         translation_string: $ => seq(
@@ -732,7 +743,7 @@ module.exports = grammar({
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
         namespaced_identifier: $ => prec.left(5, seq(
-            field('left', choice($._single_identifier, $.string_literal, $.regex_literal, $.this, $.primitive_type)),
+            field('left', choice($._single_identifier, $.string_literal, $.regex_literal, $.this, $.primitive_type, $.parenthesized_expression)),
             repeat1(prec.right(2, seq(
                 choice('.', '->'), 
                 field('right', choice($._single_identifier, $.string_literal)),
@@ -763,7 +774,11 @@ module.exports = grammar({
 
         comment: $ => token(choice(
             /\/\/.+/, // Single line
-            /\/\*(.|\n)+\*\// // Multi-line
+            seq(      // Multi-line
+                '/*',
+                /[^*]*\*+([^/*][^*]*\*+)*/,
+                '/'
+            )
         )),
 
     }
