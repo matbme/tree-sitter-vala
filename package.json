@@ -13,6 +13,6 @@
     "tree-sitter-highlight": "^1.0.1"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.1"
+    "tree-sitter-cli": "^0.20.4"
   }
 }

@@ -134,3 +134,36 @@ string GROUP_COLOR_STYLE = """
 (source_file
     (declaration (primitive_type) (uppercased_identifier) (verbatim))
 )
+
+
+=============
+Preprocessor
+=============
+
+public void run () {
+#if PREPROCESSOR_DEBUG
+    // Use "-D PREPROCESSOR_DEBUG" to run this code path
+    print ("debug version");
+#else
+    // Normally, we run this code path
+    print ("production version");
+#endif
+}
+
+---
+
+(source_file
+    (function_definition (modifier) (primitive_type) (identifier) (parameter_list) (block
+        (preproc_if (uppercased_identifier))
+        (comment)
+        (function_call (identifier) (parameter_list
+            (instanciation_parameter (string_literal))
+        ))
+        (preproc_else)
+        (comment)
+        (function_call (identifier) (parameter_list
+            (instanciation_parameter (string_literal))
+        ))
+        (preproc_endif)
+    ))
+)

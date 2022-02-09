@@ -71,6 +71,10 @@
   "owned"
   "throws"
   "delete"
+  "#if"
+  "#elif"
+  (preproc_else)
+  (preproc_endif)
 ] @keyword
 
 "throw" @exception

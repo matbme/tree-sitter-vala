@@ -17,7 +17,8 @@ module.exports = grammar({
         [$.new_instance, $._identifiers, $.namespaced_identifier],
         [$.new_instance, $.namespaced_identifier],
         [$.chained_function_call, $.new_instance, $.namespaced_identifier],
-        [$.block, $.array_initializer]
+        [$.block, $.array_initializer],
+        [$.enum_declaration]
     ],
 
     word: $ => $.identifier,
@@ -26,6 +27,7 @@ module.exports = grammar({
         source_file: $ => repeat($._top_level),
 
         _top_level: $ => choice(
+            $._preproc,
             $.function_definition,
             $.namespace,
             $.using,
@@ -39,6 +41,27 @@ module.exports = grammar({
             $.gobject_contruct,
             $.code_attribute
         ),
+
+        _preproc: $ => prec(10, choice(
+            $.preproc_if,
+            $.preproc_elif,
+            $.preproc_else,
+            $.preproc_endif
+        )),
+
+        preproc_if: $ => seq(
+            '#if',
+            $._expression
+        ),
+
+        preproc_elif: $ => seq(
+            '#elif',
+            $._expression
+        ),
+
+        preproc_else: $ => '#else',
+
+        preproc_endif: $ => '#endif',
 
         function_definition: $ => seq(
             repeat($.modifier),
@@ -74,7 +97,7 @@ module.exports = grammar({
         )),
 
         chained_function_call: $ => seq(
-            $.function_call,
+            choice($.function_call, $.typeof_expression),
             repeat1(prec.left(seq('.', choice($.function_call, $._single_identifier))))
         ),
 
@@ -133,8 +156,9 @@ module.exports = grammar({
             seq(
                 repeat(seq($.uppercased_identifier, ',')),
                 $.uppercased_identifier,
-                optional(',')
+                optional(choice(',', ';'))
             ),
+            optional(repeat($.function_definition)),
             '}'
         ),
 
@@ -743,7 +767,7 @@ module.exports = grammar({
 
         identifier: $ => /[a-z_]\w*/,
 
-        camel_cased_identifier: $ => /[A-Z]\w*[a-z]/,
+        camel_cased_identifier: $ => /[A-Z]\w*[a-z]\w+/,
 
         uppercased_identifier: $ => /[A-Z][A-Z_]*/,
 
