@@ -1766,6 +1766,14 @@
           "named": true
         },
         {
+          "type": "array_initializer",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
@@ -1774,7 +1782,43 @@
           "named": true
         },
         {
+          "type": "chained_function_call",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "closure",
+          "named": true
+        },
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "dynamic_cast",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "free_pointer",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "generic_identifier",
+          "named": true
+        },
+        {
+          "type": "global_access",
           "named": true
         },
         {
@@ -1786,7 +1830,75 @@
           "named": true
         },
         {
+          "type": "is_type_expression",
+          "named": true
+        },
+        {
           "type": "namespaced_identifier",
+          "named": true
+        },
+        {
+          "type": "new_instance",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "ownership_transfer",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "static_cast",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "string_template",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "this",
+          "named": true
+        },
+        {
+          "type": "throw_error",
+          "named": true
+        },
+        {
+          "type": "translation_string",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "typeof_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         },
         {
@@ -1795,6 +1907,14 @@
         },
         {
           "type": "uppercased_identifier",
+          "named": true
+        },
+        {
+          "type": "verbatim",
+          "named": true
+        },
+        {
+          "type": "yield_expression",
           "named": true
         }
       ]

@@ -1911,8 +1911,17 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "block"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          ]
         }
       ]
     },
@@ -3547,7 +3556,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^/\\\\\\[\\n]"
+                "value": "[^\\/\\\\\\[\\n]"
               }
             ]
           }
@@ -4090,7 +4099,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
@@ -4162,6 +4171,14 @@
     ],
     [
       "enum_declaration"
+    ],
+    [
+      "closure",
+      "ternary_expression"
+    ],
+    [
+      "closure",
+      "unary_expression"
     ]
   ],
   "precedences": [],

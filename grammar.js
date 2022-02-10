@@ -18,7 +18,9 @@ module.exports = grammar({
         [$.new_instance, $.namespaced_identifier],
         [$.chained_function_call, $.new_instance, $.namespaced_identifier],
         [$.block, $.array_initializer],
-        [$.enum_declaration]
+        [$.enum_declaration],
+        [$.closure, $.ternary_expression],
+        [$.closure, $.unary_expression]
     ],
 
     word: $ => $.identifier,
@@ -407,7 +409,7 @@ module.exports = grammar({
             commaSep($._identifiers),
             ')',
             token('=>'),
-            $.block
+            choice($.block, $._expression)
         ),
 
         declaration: $ => seq(
