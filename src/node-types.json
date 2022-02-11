@@ -8230,17 +8230,7 @@
   {
     "type": "verbatim",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "while_statement",

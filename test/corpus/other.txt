@@ -122,17 +122,14 @@ string s = @"$a * $b = $(a * b)";
 Verbatim
 =========
 
-string GROUP_COLOR_STYLE = """
-    .group-color {
-        background-color: %s;
-        border-radius: 50%
-    }
+string verb = """
+    Verbatim does not identify \\ or \n or "this" as its end
 """;
 
 ---
 
 (source_file
-    (declaration (primitive_type) (uppercased_identifier) (verbatim))
+    (declaration (primitive_type) (identifier) (verbatim))
 )
 
 

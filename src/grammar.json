@@ -3225,24 +3225,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "IMMEDIATE_TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[^\\\\\"\"\"]+"
-                  }
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "escape_sequence"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_verbatim_content"
           }
         },
         {
@@ -3556,7 +3540,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^\\/\\\\\\[\\n]"
+                "value": "[^/\\\\\\[\\n]"
               }
             ]
           }
@@ -4099,7 +4083,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
@@ -4182,7 +4166,12 @@
     ]
   ],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_verbatim_content"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }

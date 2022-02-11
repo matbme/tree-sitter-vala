@@ -1,6 +1,10 @@
 module.exports = grammar({
     name: 'vala',
 
+    externals: $ => [
+        $._verbatim_content,
+    ],
+
     extras: $ => [
         $.comment,
         /\s|\\\r?\n/
@@ -600,10 +604,7 @@ module.exports = grammar({
 
         verbatim: $ => seq(
             '"""',
-            repeat(choice(
-                token.immediate(prec(1, /[^\\"""]+/)),
-                $.escape_sequence
-            )),
+            repeat($._verbatim_content),
             '"""'
         ),
 
