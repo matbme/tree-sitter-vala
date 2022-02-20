@@ -12,7 +12,7 @@ namespace Testers {
 
 (source_file
     (namespace
-        (camel_cased_identifier)
+        (identifier)
         (block
             (function_definition
                 (primitive_type)
@@ -36,5 +36,5 @@ using Gtk;
 ---
 
 (source_file
-    (using (camel_cased_identifier))
+    (using_directive (identifier))
 )

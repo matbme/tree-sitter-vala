@@ -55,6 +55,6 @@ o->data_1 = 0;
 ---
 
 (source_file
-    (function_call (namespaced_identifier (identifier) (identifier)) (parameter_list))
-    (assignment (namespaced_identifier (identifier) (identifier)) (number))
+    (function_call (identifier) (identifier) (parameter_list))
+    (assignment (identifier) (identifier) (number))
 )

@@ -15,7 +15,7 @@ for (int a = 0; a < 10; a++) {
         (unary_expression (identifier))
         (block
             (function_call (identifier) 
-                (parameter_list (instanciation_parameter (identifier)))
+                (parameter_list (parameter (identifier)))
             )
         )
     )
@@ -36,7 +36,7 @@ for (int a = 0; a < 10; a++) print (a);
         (binary_expression (identifier) (number))
         (unary_expression (identifier))
         (function_call (identifier) 
-            (parameter_list (instanciation_parameter (identifier)))
+            (parameter_list (parameter (identifier)))
         )
     )
 )
@@ -55,7 +55,7 @@ foreach (int a in int_array) {
 (source_file
     (foreach_statement (primitive_type) (identifier) (identifier) (block
         (function_call (identifier) 
-            (parameter_list (instanciation_parameter (identifier)))
+            (parameter_list (parameter (identifier)))
         )
     ))
 )

@@ -16,13 +16,13 @@ try {
             (assignment (identifier) (number))
         )
         (parameter_list 
-            (declaration_parameter (camel_cased_identifier) (identifier))
+            (parameter (identifier) (identifier))
         )
         (block
             (function_call 
                 (identifier) 
-                (parameter_list (instanciation_parameter
-                    (namespaced_identifier (identifier) (identifier))
+                (parameter_list (parameter
+                    (identifier) (identifier)
                 ))
             )
         )
@@ -45,7 +45,7 @@ void my_method() throws IOError {
         (primitive_type) 
         (identifier) 
         (parameter_list) 
-        (throws_declarator (camel_cased_identifier)) 
+        (throws_declarator (identifier)) 
         (block
             (comment)
         )
@@ -66,9 +66,9 @@ if (something_went_wrong) {
 (source_file
     (if_statement (identifier) (block
         (throw_error (new_instance (function_call
-            (namespaced_identifier (camel_cased_identifier) (uppercased_identifier))
+            (identifier) (identifier)
             (parameter_list
-                (instanciation_parameter (string_literal))
+                (parameter (string_literal))
             )
         )))
     ))

@@ -38,9 +38,9 @@ public virtual int mult (int x, int y, out int z) {
         (primitive_type)
         (identifier)
         (parameter_list
-            (declaration_parameter (primitive_type) (identifier))
-            (declaration_parameter (primitive_type) (identifier))
-            (declaration_parameter (modifier) (primitive_type) (identifier))
+            (parameter (primitive_type) (identifier))
+            (parameter (primitive_type) (identifier))
+            (parameter (modifier) (primitive_type) (identifier))
         )
         (block
             (assignment (identifier) (binary_expression (identifier) (identifier)))
@@ -65,10 +65,10 @@ var obj = Object (
     (declaration
         (identifier)
         (function_call
-            (camel_cased_identifier)
+            (identifier)
             (parameter_list
-                (instanciation_parameter (identifier) (number))
-                (instanciation_parameter (identifier) (string_literal))
+                (parameter (identifier) (number))
+                (parameter (identifier) (string_literal))
             )
         )
     )
@@ -87,8 +87,8 @@ my_sorting_algorithm(data, (a, b) => {
 
 (source_file
     (function_call (identifier) (parameter_list
-        (instanciation_parameter (identifier))
-        (instanciation_parameter (closure
+        (parameter (identifier))
+        (parameter (closure
             (identifier) (identifier) (block
                 (return_statement (number))
             )
@@ -111,7 +111,7 @@ void method_with_varargs(int x, ...) {
     (function_definition
         (primitive_type)
         (identifier)
-        (parameter_list (declaration_parameter (primitive_type) (identifier)) (ellipsis))
+        (parameter_list (parameter (primitive_type) (identifier)) (ellipsis))
         (block
             (comment)
         )
@@ -135,8 +135,8 @@ double method_name(int x, double d)
 
 (source_file
     (function_definition (primitive_type) (identifier) (parameter_list
-        (declaration_parameter (primitive_type) (identifier))
-        (declaration_parameter (primitive_type) (identifier))
+        (parameter (primitive_type) (identifier))
+        (parameter (primitive_type) (identifier))
     )
     (requires_declarator (binary_expression (binary_expression (identifier) (number)) (binary_expression (identifier) (number))))
     (requires_declarator (binary_expression (binary_expression (identifier) (decimal_literal (number) (number))) (binary_expression (identifier) (decimal_literal (number) (number)))))

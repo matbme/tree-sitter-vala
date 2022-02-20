@@ -57,9 +57,9 @@ enum WindowType {
 
 (source_file
     (enum_declaration 
-        (camel_cased_identifier)
-        (uppercased_identifier)
-        (uppercased_identifier)
+        (identifier)
+        (identifier)
+        (identifier)
     )
 )
 
@@ -118,8 +118,8 @@ print (my_instance.store[1]);
     (function_call
         (identifier)
         (parameter_list
-            (instanciation_parameter (array_identifier 
-                (namespaced_identifier (identifier) (identifier)) 
+            (parameter (array_identifier 
+                (identifier) (identifier)
                 (number)
             ))
         )
@@ -141,7 +141,7 @@ struct Color {
 ---
 
 (source_file
-    (struct_declaration (camel_cased_identifier) (block
+    (struct_declaration (identifier) (block
         (declaration (modifier) (primitive_type) (identifier))
         (declaration (modifier) (primitive_type) (identifier))
         (declaration (modifier) (primitive_type) (identifier))
@@ -159,7 +159,7 @@ Color? c = null;
 
 (source_file
     (declaration
-        type_name: (nullable_type (camel_cased_identifier))
+        type_name: (nullable_type (identifier))
         (identifier)
         (null)
     )

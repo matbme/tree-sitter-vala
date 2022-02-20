@@ -1,6 +1,3 @@
-if (i > 0) {
-    // ...
-}
-else {
-    // ...
+public class test<As> {
+
 }
