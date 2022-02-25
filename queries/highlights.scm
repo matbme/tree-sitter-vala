@@ -1,18 +1,14 @@
-; Variable
-
-(uppercased_identifier) @constant
-
 (namespaced_identifier
   left: [
-    (camel_cased_identifier) @namespace
-    (identifier) @variable
+    (identifier) @namespace
+    (_)
   ]
   right: [
     (identifier) @parameter
-    (camel_cased_identifier) @type
-    (uppercased_identifier) @constant
+    (_)
   ]
 )
+
 ; Pointers
 
 (address_of_identifier "&" @symbol)
@@ -157,7 +153,6 @@
   type: (_) @type
   name: [
   	(identifier) @method
-    (camel_cased_identifier) @type
     (generic_identifier (_) @type) 
     (namespaced_identifier
         (_) @method .
@@ -168,7 +163,6 @@
 (function_call
   identifier: [
   	(identifier) @method
-    (camel_cased_identifier) @type
     (generic_identifier (_) @type) 
     (namespaced_identifier
         (_) @method .
@@ -202,12 +196,7 @@
 
 ; Classes
 
-(class_declaration
-    [
-      (camel_cased_identifier) @type
-      (generic_identifier (_) @type )
-    ]
-)
+(class_declaration) @type
 
 (class_constructor_definition
   name: [
@@ -223,12 +212,7 @@
 
 ; Interfaces
 
-(interface_declaration
-    [
-      (camel_cased_identifier) @type
-      (generic_identifier (_) @type )
-    ]
-)
+(interface_declaration) @type
 
 ; Strings and escape sequences
 
@@ -247,7 +231,7 @@
 ; New instance from Object
 
 (new_instance
-  ".new" @keyword
+  "new" @keyword
 )
 
 ; GObject construct
@@ -266,7 +250,7 @@
 ; Enum
 
 (enum_declaration
-    (camel_cased_identifier) @type
+    name: (identifier) @type
 )
 
 ; Loop
@@ -292,6 +276,6 @@
 ; Code attribute
 
 (code_attribute
-  name: (camel_cased_identifier) @attribute
+  name: (identifier) @attribute
   param: (_) @attribute
 ) @attribute

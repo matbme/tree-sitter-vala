@@ -80,7 +80,7 @@ module.exports = grammar({
 
         throws_declarator: $ => seq(
             'throws', 
-            commaSep1($.camel_cased_identifier)
+            commaSep1($.identifier)
         ),
 
         requires_declarator: $ => seq(
@@ -157,11 +157,11 @@ module.exports = grammar({
         enum_declaration: $ => seq(
             repeat($.modifier),
             'enum',
-            $._identifiers,
+            field('name', $._identifiers),
             '{',
             seq(
-                repeat(seq($.uppercased_identifier, ',')),
-                $.uppercased_identifier,
+                repeat(seq($.identifier, ',')),
+                $.identifier,
                 optional(choice(',', ';'))
             ),
             optional(repeat($.function_definition)),
@@ -195,8 +195,7 @@ module.exports = grammar({
         _type: $ => choice(
             $.primitive_type,
             $.namespaced_identifier,
-            $.camel_cased_identifier,
-            $.uppercased_identifier,
+            $.identifier,
             $.array_identifier,
             $.generic_identifier,
             prec(10, $.nullable_type),
@@ -293,7 +292,7 @@ module.exports = grammar({
 
         code_attribute: $ => seq(
             '[',
-            field('name', $.camel_cased_identifier),
+            field('name', $.identifier),
             optional(seq(
                 '(',
                 commaSep1(seq(
@@ -318,13 +317,13 @@ module.exports = grammar({
             $._identifiers,
             '=',
             $._expression,
-            ';'
+            optional(';') // for inline assignment
         ),
 
         if_statement: $ => prec.right(seq(
             'if',
             '(',
-            $._expression,
+            choice($._expression, $.assignment),
             ')',
             choice($.block, $._expression, $._statement),
             optional(seq(
@@ -511,22 +510,14 @@ module.exports = grammar({
             ')'
         ),
 
-        new_instance: $ => prec(-1, choice(
-            seq(
-                'new',
-                choice(
-                    $.function_call,
-                    $.chained_function_call,
-                    $.array_identifier,
-                    alias($.struct_initializer, $.object_initializer)
-                )
+        new_instance: $ => prec(-1, seq(
+            'new',
+            choice(
+                $.function_call,
+                $.chained_function_call,
+                $.array_identifier,
+                alias($.struct_initializer, $.object_initializer)
             ),
-            seq(
-                $._single_identifier,
-                repeat(seq('.', $._single_identifier)),
-                token.immediate('.new'),
-                $.parameter_list
-            )
         )),
 
         throw_error: $ => prec(7, seq(
@@ -751,8 +742,6 @@ module.exports = grammar({
 
         _single_identifier: $ => choice(
             $.identifier,
-            $.camel_cased_identifier,
-            $.uppercased_identifier,
             $.array_identifier,
             $.generic_identifier,
             $.address_of_identifier,
@@ -761,25 +750,26 @@ module.exports = grammar({
 
         ambiguous_identifier: $ => seq(
             '@',
-            choice(
-                $.identifier,
-                $.camel_cased_identifier,
-                $.uppercased_identifier
-            ),
+            $.identifier,
         ),
 
-        identifier: $ => /[a-z_]\w*/,
+        identifier: $ => /[\p{L}_$][\p{L}\p{Nd}_$]*/,
 
-        camel_cased_identifier: $ => /[A-Z]\w*[a-z]\w+/,
-
-        uppercased_identifier: $ => /[A-Z][A-Z_]*/,
-
-        namespaced_identifier: $ => prec.left(5, seq(
-            field('left', choice($._single_identifier, $.string_literal, $.regex_literal, $.this, $.primitive_type, $.parenthesized_expression)),
-            repeat1(prec.right(2, seq(
-                choice('.', '->'), 
-                field('right', choice($._single_identifier, $.string_literal)),
-            )))
+        namespaced_identifier: $ => prec.right(5, seq(
+            field('left', choice(
+                $._identifiers,
+                $.string_literal,
+                $.regex_literal,
+                $.this,
+                $.primitive_type,
+                $.parenthesized_expression
+            )),
+            choice('.', '->'), 
+            field('right', choice(
+                $._single_identifier,
+                $.string_literal,
+                alias('new', $.new_instance)
+            )),
         )),
 
         address_of_identifier: $ => prec(10, seq(

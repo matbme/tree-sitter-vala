@@ -49,9 +49,9 @@ private async void do_stuff () {
 (source_file
     (function_definition (modifier) (modifier) (primitive_type) (identifier) (parameter_list
         (declaration_parameter (primitive_type) (identifier))
-        (declaration_parameter (primitive_type) (identifier) (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (uppercased_identifier)))
+        (declaration_parameter (primitive_type) (identifier) (namespaced_identifier (namespaced_identifier (identifier) (identifier)) (identifier)))
     ) (block
-        (function_call (namespaced_identifier (camel_cased_identifier) (camel_cased_identifier) (identifier)) (parameter_list 
+        (function_call (namespaced_identifier (namespaced_identifier (identifier) (identifier)) (identifier)) (parameter_list 
             (instanciation_parameter (identifier))
             (instanciation_parameter (closure (block
                 (function_call (namespaced_identifier (identifier) (identifier)) (parameter_list))
@@ -92,7 +92,7 @@ Code attribute
 ---
 
 (source_file
-    (code_attribute (camel_cased_identifier)
+    (code_attribute (identifier)
         (identifier) (string_literal)
         (identifier) (string_literal)
     )
@@ -151,7 +151,7 @@ public void run () {
 
 (source_file
     (function_definition (modifier) (primitive_type) (identifier) (parameter_list) (block
-        (preproc_if (uppercased_identifier))
+        (preproc_if (identifier))
         (comment)
         (function_call (identifier) (parameter_list
             (instanciation_parameter (string_literal))

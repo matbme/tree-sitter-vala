@@ -25,8 +25,8 @@ Button b = widget as Button;
 
 (source_file
     (declaration 
-        (camel_cased_identifier)
         (identifier)
-        (dynamic_cast (identifier) (camel_cased_identifier))
+        (identifier)
+        (dynamic_cast (identifier) (identifier))
     )
 )

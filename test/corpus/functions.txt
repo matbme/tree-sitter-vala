@@ -65,7 +65,7 @@ var obj = Object (
     (declaration
         (identifier)
         (function_call
-            (camel_cased_identifier)
+            (identifier)
             (parameter_list
                 (instanciation_parameter (identifier) (number))
                 (instanciation_parameter (identifier) (string_literal))
