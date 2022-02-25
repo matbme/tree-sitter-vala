@@ -44,7 +44,7 @@ module.exports = grammar({
             $.struct_declaration,
             $.interface_declaration,
             $.enum_declaration,
-            $.gobject_contruct,
+            $.gobject_construct,
             $.code_attribute
         ),
 
@@ -144,15 +144,17 @@ module.exports = grammar({
             $.block
         ),
 
-        struct_initializer: $ => prec(-1, seq(
+        struct_initializer: $ => prec.right(-1, seq(
             $._identifiers,
             $.parameter_list,
-            alias(seq(
-                '{',
-                commaSep(seq($._identifiers, '=', $._expression)),
-                '}',
-            ), $.block)
+            $.initializer
         )),
+
+        initializer: $ => seq(
+            '{',
+            commaSep($.inline_assignment),
+            '}'
+        ),
 
         enum_declaration: $ => seq(
             repeat($.modifier),
@@ -317,13 +319,19 @@ module.exports = grammar({
             $._identifiers,
             '=',
             $._expression,
-            optional(';') // for inline assignment
+            ';'
         ),
+
+        inline_assignment: $ => alias(seq(
+            $._identifiers,
+            '=',
+            $._expression,
+        ), $.assignment),
 
         if_statement: $ => prec.right(seq(
             'if',
             '(',
-            choice($._expression, $.assignment),
+            choice($._expression, $.inline_assignment),
             ')',
             choice($.block, $._expression, $._statement),
             optional(seq(
@@ -452,7 +460,7 @@ module.exports = grammar({
             )
         ),
 
-        gobject_contruct: $ => seq(
+        gobject_construct: $ => seq(
             'construct',
             $.block
         ),

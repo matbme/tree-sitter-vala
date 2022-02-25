@@ -4,7 +4,9 @@
     (_)
   ]
   right: [
-    (identifier) @parameter
+    ((identifier) @parameter (#match? @parameter "^[a-z]"))
+    ((identifier) @constructor (#match? @constructor "^[A-Z]*[a-z]+"))
+    ((identifier) @constant (#match? @constant "^[A-Z][A-Z_]*"))
     (_)
   ]
 )
@@ -192,7 +194,10 @@
 
 "global::" @namespace
 
-"using" @include
+(using 
+  "using" @include
+  (_) @namespace
+)
 
 ; Classes
 
@@ -236,7 +241,9 @@
 
 ; GObject construct
 
-"construct" @constructor
+(gobject_construct 
+  "construct" @constructor
+)
 
 ; Try statement
 

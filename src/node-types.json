@@ -560,7 +560,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "address_of_identifier",
@@ -997,7 +997,7 @@
           "named": true
         },
         {
-          "type": "gobject_contruct",
+          "type": "gobject_construct",
           "named": true
         },
         {
@@ -1273,7 +1273,7 @@
           "named": true
         },
         {
-          "type": "gobject_contruct",
+          "type": "gobject_construct",
           "named": true
         },
         {
@@ -3835,7 +3835,7 @@
     }
   },
   {
-    "type": "gobject_contruct",
+    "type": "gobject_construct",
     "named": true,
     "fields": {},
     "children": {
@@ -3985,6 +3985,10 @@
           "named": true
         },
         {
+          "type": "inline_assignment",
+          "named": true
+        },
+        {
           "type": "is_type_expression",
           "named": true
         },
@@ -4125,6 +4129,36 @@
         },
         {
           "type": "underscore",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "initializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_assignment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inline_assignment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
           "named": true
         }
       ]
@@ -4640,10 +4674,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "generic_identifier",
           "named": true
         },
@@ -4653,6 +4683,10 @@
         },
         {
           "type": "indirection_identifier",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         },
         {
@@ -5901,7 +5935,7 @@
           "named": true
         },
         {
-          "type": "gobject_contruct",
+          "type": "gobject_construct",
           "named": true
         },
         {
@@ -6565,10 +6599,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "generic_identifier",
           "named": true
         },
@@ -6578,6 +6608,10 @@
         },
         {
           "type": "indirection_identifier",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         },
         {

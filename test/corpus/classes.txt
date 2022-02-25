@@ -97,7 +97,7 @@ public class MyClass : Object {
         (identifier)
         (identifier)
         (block
-            (gobject_contruct (block
+            (gobject_construct (block
                 (comment)
             ))
         )
@@ -130,7 +130,7 @@ public class MyClass<G> : Object {
                 (generic_identifier (identifier) (identifier))
                 (identifier)
             )
-            (gobject_contruct (block
+            (gobject_construct (block
                 (assignment 
                     (identifier) 
                     (new_instance
