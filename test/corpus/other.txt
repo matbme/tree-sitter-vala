@@ -10,16 +10,18 @@ if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.match(email)) {
 
 (source_file
     (if_statement
-        (function_call identifier: (namespaced_identifier 
+        (namespaced_identifier
             left: (regex_literal
                 pattern: (regex_pattern)
                 flags: (regex_flags)
             ) 
-            right: (identifier)
-            ) 
-            (parameter_list
-                (instanciation_parameter (identifier))
-            )) 
+            right: (member_function 
+                identifier: (identifier)
+                (parameter_list
+                    (instanciation_parameter (identifier))
+                )
+            )
+        )
         (block
             (comment)
         )
@@ -47,22 +49,44 @@ private async void do_stuff () {
 ---
 
 (source_file
-    (function_definition (modifier) (modifier) (primitive_type) (identifier) (parameter_list
-        (declaration_parameter (primitive_type) (identifier))
-        (declaration_parameter (primitive_type) (identifier) (namespaced_identifier (namespaced_identifier (identifier) (identifier)) (identifier)))
-    ) (block
-        (function_call (namespaced_identifier (namespaced_identifier (identifier) (identifier)) (identifier)) (parameter_list 
-            (instanciation_parameter (identifier))
-            (instanciation_parameter (closure (block
-                (function_call (namespaced_identifier (identifier) (identifier)) (parameter_list))
-                (return_statement (false))
-            )))
-            (instanciation_parameter (identifier))
-        ))
-        (yield_expression)
+    (function_definition (modifier) (modifier) type: (primitive_type) name: (identifier)
+        (parameter_list
+            (declaration_parameter (primitive_type) (identifier))
+            (declaration_parameter (primitive_type) (identifier) (namespaced_identifier
+                left: (namespaced_identifier
+                    left: (identifier)
+                    right: (identifier)
+                )
+                right: (identifier)
+        )))
+        (block
+            (namespaced_identifier
+                left: (namespaced_identifier
+                    left: (identifier)
+                    right: (identifier)
+                )
+                right: (member_function identifier: (identifier) (parameter_list
+                    (instanciation_parameter (identifier))
+                    (instanciation_parameter (closure (block
+                        (namespaced_identifier
+                            left: (identifier)
+                            right: (member_function identifier: (identifier) (parameter_list))
+                        )
+                        (return_statement (false))
+                    )))
+                    (instanciation_parameter (identifier))
+                ))
+            )
+            (yield_expression)
     ))
-    (function_definition (modifier) (modifier) (primitive_type) (identifier) (parameter_list) (block
-        (yield_expression (function_call (identifier) (parameter_list (instanciation_parameter (number)))))
+
+    (function_definition (modifier) (modifier) type: (primitive_type) name: (identifier) (parameter_list) (block
+        (yield_expression (function_call
+            identifier: (identifier)
+            (parameter_list
+                (instanciation_parameter (number))
+            )
+        ))
     ))
 )
 

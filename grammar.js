@@ -11,20 +11,22 @@ module.exports = grammar({
     ],
 
     conflicts: $ => [
-        [$.chained_function_call, $._identifiers],
+        // [$.chained_function_call, $._identifiers],
         [$.generic_identifier, $._expression],
         [$._identifiers, $.generic_identifier],
-        [$.chained_function_call, $._identifiers, $.generic_identifier],
+        // [$.chained_function_call, $._identifiers, $.generic_identifier],
         [$._type, $._single_identifier],
         [$.static_cast, $.dynamic_cast],
         [$._type, $._identifiers],
         [$.new_instance, $._identifiers, $.namespaced_identifier],
         [$.new_instance, $.namespaced_identifier],
-        [$.chained_function_call, $.new_instance, $.namespaced_identifier],
+        // [$.chained_function_call, $.new_instance, $.namespaced_identifier],
         [$.block, $.array_initializer],
         [$.enum_declaration],
         [$.closure, $.ternary_expression],
-        [$.closure, $.unary_expression]
+        [$.closure, $.unary_expression],
+        [$.function_call, $._type],
+        [$.function_call, $._identifiers]
     ],
 
     word: $ => $.identifier,
@@ -97,15 +99,15 @@ module.exports = grammar({
             ')'
         ),
 
-        function_call: $ => prec(3, seq(
-            field('identifier', choice($._identifiers, $.primitive_type)),
+        function_call: $ => seq(
+            field('identifier', choice($._single_identifier, $.primitive_type)),
             $.parameter_list
-        )),
-
-        chained_function_call: $ => seq(
-            choice($.function_call, $.typeof_expression),
-            repeat1(prec.left(seq('.', choice($.function_call, $._single_identifier))))
         ),
+
+        // chained_function_call: $ => seq(
+        //     choice($.function_call, $.typeof_expression),
+        //     repeat1(prec.left(seq('.', choice($.function_call, $._single_identifier))))
+        // ),
 
         class_declaration: $ => seq(
             repeat($.modifier),
@@ -495,7 +497,7 @@ module.exports = grammar({
             $.regex_literal,
             $.array_initializer,
             $.function_call,
-            $.chained_function_call,
+            // $.chained_function_call,
             $.new_instance,
             $.throw_error,
             $.static_cast,
@@ -522,8 +524,9 @@ module.exports = grammar({
             'new',
             choice(
                 $.function_call,
-                $.chained_function_call,
+                // $.chained_function_call,
                 $.array_identifier,
+                $.namespaced_identifier,
                 alias($.struct_initializer, $.object_initializer)
             ),
         )),
@@ -724,7 +727,6 @@ module.exports = grammar({
         _identifiers: $ => choice(
             $._single_identifier,
             $.namespaced_identifier,
-            $.ambiguous_identifier,
             prec(-1, $.underscore)
         ),
 
@@ -753,7 +755,8 @@ module.exports = grammar({
             $.array_identifier,
             $.generic_identifier,
             $.address_of_identifier,
-            $.indirection_identifier
+            $.indirection_identifier,
+            $.ambiguous_identifier
         ),
 
         ambiguous_identifier: $ => seq(
@@ -763,20 +766,28 @@ module.exports = grammar({
 
         identifier: $ => /[\p{L}_$][\p{L}\p{Nd}_$]*/,
 
-        namespaced_identifier: $ => prec.right(5, seq(
+        _inline_new_instance: $ => seq(
+            'new',
+            $.parameter_list
+        ),
+
+        namespaced_identifier: $ => prec.left(5, seq(
             field('left', choice(
                 $._identifiers,
                 $.string_literal,
                 $.regex_literal,
                 $.this,
                 $.primitive_type,
-                $.parenthesized_expression
+                $.parenthesized_expression,
+                $.typeof_expression,
+                alias($.function_call, $.member_function)
             )),
             choice('.', '->'), 
             field('right', choice(
-                $._single_identifier,
+                $._identifiers,
                 $.string_literal,
-                alias('new', $.new_instance)
+                alias($._inline_new_instance, $.new_instance),
+                alias($.function_call, $.member_function)
             )),
         )),
 

@@ -267,79 +267,28 @@
       ]
     },
     "function_call": {
-      "type": "PREC",
-      "value": 3,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "identifier",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_identifiers"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "primitive_type"
-                }
-              ]
-            }
-          },
-          {
-            "type": "SYMBOL",
-            "name": "parameter_list"
-          }
-        ]
-      }
-    },
-    "chained_function_call": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "function_call"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "typeof_expression"
-            }
-          ]
+          "type": "FIELD",
+          "name": "identifier",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_single_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "primitive_type"
+              }
+            ]
+          }
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "PREC_LEFT",
-            "value": 0,
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "function_call"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_single_identifier"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+          "type": "SYMBOL",
+          "name": "parameter_list"
         }
       ]
     },
@@ -2289,10 +2238,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "chained_function_call"
-          },
-          {
-            "type": "SYMBOL",
             "name": "new_instance"
           },
           {
@@ -2386,11 +2331,11 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "chained_function_call"
+                "name": "array_identifier"
               },
               {
                 "type": "SYMBOL",
-                "name": "array_identifier"
+                "name": "namespaced_identifier"
               },
               {
                 "type": "ALIAS",
@@ -3645,10 +3590,6 @@
           "name": "namespaced_identifier"
         },
         {
-          "type": "SYMBOL",
-          "name": "ambiguous_identifier"
-        },
-        {
           "type": "PREC",
           "value": -1,
           "content": {
@@ -3837,6 +3778,10 @@
         {
           "type": "SYMBOL",
           "name": "indirection_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ambiguous_identifier"
         }
       ]
     },
@@ -3857,8 +3802,21 @@
       "type": "PATTERN",
       "value": "[\\p{L}_$][\\p{L}\\p{Nd}_$]*"
     },
+    "_inline_new_instance": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "new"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_list"
+        }
+      ]
+    },
     "namespaced_identifier": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 5,
       "content": {
         "type": "SEQ",
@@ -3892,6 +3850,19 @@
                 {
                   "type": "SYMBOL",
                   "name": "parenthesized_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "typeof_expression"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "function_call"
+                  },
+                  "named": true,
+                  "value": "member_function"
                 }
               ]
             }
@@ -3917,7 +3888,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_single_identifier"
+                  "name": "_identifiers"
                 },
                 {
                   "type": "SYMBOL",
@@ -3926,11 +3897,20 @@
                 {
                   "type": "ALIAS",
                   "content": {
-                    "type": "STRING",
-                    "value": "new"
+                    "type": "SYMBOL",
+                    "name": "_inline_new_instance"
                   },
                   "named": true,
                   "value": "new_instance"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "function_call"
+                  },
+                  "named": true,
+                  "value": "member_function"
                 }
               ]
             }
@@ -4038,19 +4018,10 @@
   ],
   "conflicts": [
     [
-      "chained_function_call",
-      "_identifiers"
-    ],
-    [
       "generic_identifier",
       "_expression"
     ],
     [
-      "_identifiers",
-      "generic_identifier"
-    ],
-    [
-      "chained_function_call",
       "_identifiers",
       "generic_identifier"
     ],
@@ -4076,11 +4047,6 @@
       "namespaced_identifier"
     ],
     [
-      "chained_function_call",
-      "new_instance",
-      "namespaced_identifier"
-    ],
-    [
       "block",
       "array_initializer"
     ],
@@ -4094,6 +4060,14 @@
     [
       "closure",
       "unary_expression"
+    ],
+    [
+      "function_call",
+      "_type"
+    ],
+    [
+      "function_call",
+      "_identifiers"
     ]
   ],
   "precedences": [],
